@@ -4,10 +4,11 @@
 
 url: http://thongbin.github.io
 title: Jarvis Tong's Blog
-subtitle: iOS/Android/java Developer
+subtitle: iOS/Android/java Dev
 author: Jarvis Tong
 simple_search: https://www.google.com/search
 description:
+origional_url_pre: http://thongbin.github.io
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
