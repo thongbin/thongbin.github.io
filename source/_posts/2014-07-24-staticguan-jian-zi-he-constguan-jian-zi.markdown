@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "static关键字和const关键字"
-date: 2012-07-24 10:04:52 +0800
+date: 2014-07-24 10:04:52 +0800
 comments: true
 categories: iOS
 ---
