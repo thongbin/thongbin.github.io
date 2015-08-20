@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
 <meta property="og:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
-<meta property="og:updated_time" content="2015-08-20T19:35:58.000Z">
+<meta property="og:updated_time" content="2015-08-20T19:57:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转载]主题更换设计思路">
 <meta name="twitter:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/]" target="_blank" rel="external">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
+        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/" target="_blank" rel="external">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
 <p>资源按主题放置：相同功能的资源名称相同，放在不同的主题路径或者前缀使用主题名。<br>增加中间层，隔离不同主题相同功能资源使用的变化。</p>
 <h5 id="1-_主题管理">1. 主题管理</h5><p>主题的特性导致代码不关心资源的表现是什么，只关心资源的功能，而主题是易变化的，因此需要将易变化的部分抽离出来，整合到一个管理者中，主题的变化在管理者中完成，而不影响资源使用的地方。而且这个管理者是全局唯一的，因此使用单例。</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="list">(<span class="keyword">ThemeManager</span> <span class="variable">*)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    static ThemeManager *</span>sharedInstance = <span class="literal">nil</span><span class="comment">;</span></span><br><span class="line">    if <span class="list">(<span class="keyword">sharedInstance</span> == <span class="literal">nil</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        sharedInstance = [[ThemeManager alloc] init]<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    return sharedInstance<span class="comment">;</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -108,7 +108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cidkmo3h10003ij00b9xdeq6w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cidkmqfk60003jb00rfdjlexv" class="article-share-link">Share</a>
       
       
     </footer>
