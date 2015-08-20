@@ -5,19 +5,16 @@
   
   <title>[转载]主题更换设计思路 | Kelvin Tong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="######原出处：传人的技术博客
-现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
+  <meta name="description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[转载]主题更换设计思路">
 <meta property="og:url" content="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
-<meta property="og:description" content="######原出处：传人的技术博客
-现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
-<meta property="og:updated_time" content="2015-08-20T18:39:58.000Z">
+<meta property="og:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
+<meta property="og:updated_time" content="2015-08-20T19:35:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转载]主题更换设计思路">
-<meta name="twitter:description" content="######原出处：传人的技术博客
-现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
+<meta name="twitter:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
   
     <link rel="alternative" href="/atom.xml" title="Kelvin Tong" type="application/atom+xml">
   
@@ -89,35 +86,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>######原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/]" target="_blank" rel="external">传人的技术博客</a></p>
-<p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
+        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/]" target="_blank" rel="external">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
 <p>资源按主题放置：相同功能的资源名称相同，放在不同的主题路径或者前缀使用主题名。<br>增加中间层，隔离不同主题相同功能资源使用的变化。</p>
-<p>#####1. 主题管理</p>
-<p>主题的特性导致代码不关心资源的表现是什么，只关心资源的功能，而主题是易变化的，因此需要将易变化的部分抽离出来，整合到一个管理者中，主题的变化在管理者中完成，而不影响资源使用的地方。而且这个管理者是全局唯一的，因此使用单例。</p>
+<h5 id="1-_主题管理">1. 主题管理</h5><p>主题的特性导致代码不关心资源的表现是什么，只关心资源的功能，而主题是易变化的，因此需要将易变化的部分抽离出来，整合到一个管理者中，主题的变化在管理者中完成，而不影响资源使用的地方。而且这个管理者是全局唯一的，因此使用单例。</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="list">(<span class="keyword">ThemeManager</span> <span class="variable">*)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    static ThemeManager *</span>sharedInstance = <span class="literal">nil</span><span class="comment">;</span></span><br><span class="line">    if <span class="list">(<span class="keyword">sharedInstance</span> == <span class="literal">nil</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        sharedInstance = [[ThemeManager alloc] init]<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    return sharedInstance<span class="comment">;</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>主题中的资源使用plist进行存储，颜色的RGBA值跟字体的信息可以直接存入plist，而图片则可以存入图片的位置。按主题命名plist文件，ThemeManager的初始化跟主题更换就从main bundle中按主题名字读取对应的plist文件。</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br><span class="line">        <span class="built_in">NSString</span> *themeName = [defaults objectForKey:<span class="string">@"theme"</span>] ?: <span class="string">@"default"</span>;</span><br><span class="line">                                            </span><br><span class="line">        <span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:themeName ofType:<span class="string">@"plist"</span>];</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.theme</span> = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:path];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码中不再是直接使用主题相关的资源，而是通过ThemeManager得到对应主题下的资源。</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接使用资源：</span></span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"xxx_btn_background"</span>];</span><br><span class="line"><span class="comment">// 通过主题管理器使用资源：</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *theme = [ThemeManager sharedInstance]<span class="variable">.theme</span>;</span><br><span class="line"><span class="built_in">NSString</span> *imageName = [theme objectForKey:<span class="string">@"xxx_btn_background"</span>];</span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:imageName];</span><br><span class="line">上面的代码在使用时还是有些复杂，代码只关心资源的功能，不关系也不应该关心取资源的细节，因此应在ThemeManager对取资源进行如下封装：</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">UIImage</span> *)imageForKey:(<span class="built_in">NSString</span> *)key;</span><br><span class="line">在使用主题中的资源时，代码就变成了：</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIImage</span> *image = [[ThemeManager sharedInstance] imageForKey:<span class="string">@"xxx_btn_background"</span>];</span><br></pre></td></tr></table></figure>
-<p>#####2. 资源的放置</p>
-<p>当系统将主题相关的资源文件部署到ios设备中时，在默认情况下，系统会将所有的资源plat平铺拷贝到mainBundle目录下，即使你的资源是按文件夹来组织的。（我们可以在模拟器中查看Bundle的情况，模拟器的路径是：~/Library/Application Support/iPhone Simulator）</p>
+<h5 id="2-_资源的放置">2. 资源的放置</h5><p>当系统将主题相关的资源文件部署到ios设备中时，在默认情况下，系统会将所有的资源plat平铺拷贝到mainBundle目录下，即使你的资源是按文件夹来组织的。（我们可以在模拟器中查看Bundle的情况，模拟器的路径是：~/Library/Application Support/iPhone Simulator）</p>
 <p>因此，在将资源文件加入到工程时，不要选默认的”Recursively create groups for any add folders”，要选择“Create Folder Reference for any add folders”，这样才能保证资源文件按照原有文件夹的组织格式被拷贝到mainBundle中。</p>
 <p>关于上述的两个选项，就涉及到Xcode的Group（黄色）跟Folder Reference（蓝色）的概念了，参见从别处摘抄来的理解：</p>
 <p>XCode项目中的文件夹分成两类: group 和 directory reference, 分别是虚结构和实结构. 黄颜色的 group 是默认的格式, 它的结构和磁盘上的文件夹毫无关系, 仅仅表示资源的逻辑组织结构, 这在管理源文件是非常方便. 同一段代码可以被很多项目使用, 也可能只使用一个目录的部分文件, 它不需要被拷贝到当前项目中, 但可以在当前项目中保持一个清晰的逻辑结构. 而且引用头文件时不需要指明复杂的层次结构, 因为这些文件在XCode看来是 flat 的, 即它们处在同一层文件夹里.<br>但是 group 带来便利的同时也导致更加棘手的麻烦, 文件重名冲突问题; 尤其当你要使用上千个资源文件时, 这种问题已经极难避免; 而且, 资源文件一般是要拷贝到目标程序中的, 虽然它们在项目中可以有结构的组织, 但是复制到程序中时将会 flat 地输出到程序的根目录中, 这将是怎样的一个灾难! 同时, 如果你在外部向文件夹中加入了上百幅图片, 你不得不把它们再向xcode中加入一遍. 归根结底, 还要求助于我们传统的蓝色的 directory reference。</p>
-<p>#####3. 主题更换通知</p>
-<p>对于没有显示的界面，更换主题是不需要通知的，因为在取资源时是根据当前主题取的，但是对于正在显示的界面，更换主题时就需要进行通知，让界面重新取资源后再重绘。由于这类通知是全局性的，因此应该使用NSNotification实现通知机制。</p>
+<h5 id="3-_主题更换通知">3. 主题更换通知</h5><p>对于没有显示的界面，更换主题是不需要通知的，因为在取资源时是根据当前主题取的，但是对于正在显示的界面，更换主题时就需要进行通知，让界面重新取资源后再重绘。由于这类通知是全局性的，因此应该使用NSNotification实现通知机制。</p>
 <p>在ThemeManager的changeTheme中调用[NSNotificaitonCenter defaultCenter]的postNotificationName:object:发出通知，而在各个涉及到主题更换的ViewController中使用addObserver:selector:name:object:监听通知事件。</p>
-<p>#####4. 总结</p>
-<p>其实主题的设计思路跟类簇很像，例如对于NSNumber，不同类型的数据其实真正返回的是NSNumber相对于此类型的子类，但是对于NSNumber的使用者而言，其并不关心NSNumber返回的具体子类是什么，只要满足NSNumber定义的接口就行。设计总是类似的，针对易变化的部分，增加一个中间层（接口）将易变化的部分封装起来，提供给使用者稳定不易变的服务。</p>
+<h5 id="4-_总结">4. 总结</h5><p>其实主题的设计思路跟类簇很像，例如对于NSNumber，不同类型的数据其实真正返回的是NSNumber相对于此类型的子类，但是对于NSNumber的使用者而言，其并不关心NSNumber返回的具体子类是什么，只要满足NSNumber定义的接口就行。设计总是类似的，针对易变化的部分，增加一个中间层（接口）将易变化的部分封装起来，提供给使用者稳定不易变的服务。</p>
 <p>总之，OOP跟DesignPattern在我看来主要做了两件事：</p>
 <p>隔离变化<br><br>封装细节</p>
-<p>#####参考</p>
-<p><a href="http://twinlogix.com/en/blog/how-create-multiple-themes-ios-apps" target="_blank" rel="external">HOW TO CREATE MULTIPLE THEMES FOR IOS APPS</a><br><br><a href="http://blog.csdn.net/yanghua_kobe/article/details/9555575" target="_blank" rel="external">iOS开发之主题皮肤</a><br><br><a href="https://github.com/rnystrom/RNThemeManager" target="_blank" rel="external">RNThemeManager</a></p>
+<h5 id="参考">参考</h5><p><a href="http://twinlogix.com/en/blog/how-create-multiple-themes-ios-apps" target="_blank" rel="external">HOW TO CREATE MULTIPLE THEMES FOR IOS APPS</a><br><a href="http://blog.csdn.net/yanghua_kobe/article/details/9555575" target="_blank" rel="external">iOS开发之主题皮肤</a><br><a href="https://github.com/rnystrom/RNThemeManager" target="_blank" rel="external">RNThemeManager</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cidklt52500045200fhdnrqh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cidkmo3h10003ij00b9xdeq6w" class="article-share-link">Share</a>
       
       
     </footer>
