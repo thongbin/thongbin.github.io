@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Kelvin Tong]]></title>
-  <subtitle><![CDATA[S.H.S.F]]></subtitle>
+  <subtitle><![CDATA[iOS Developer, S.H.S.F.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
   <updated>2015-08-20T19:57:40.000Z</updated>
