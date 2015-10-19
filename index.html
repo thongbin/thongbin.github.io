@@ -67,6 +67,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-gitignorefile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/10/19/gitignorefile/" class="article-date">
+  <time datetime="2015-10-19T04:25:24.000Z" itemprop="datePublished">2015-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/19/gitignorefile/">Git 全局忽略 不需要的版本跟踪的文件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="external">让 GIT 全局性的忽略 .DS_STORE</a></p>
+<p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
+<p>Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文件吗？</p>
+<p>按照以下两步就可实现</p>
+<p>创建 ==~/.gitignore_global== 文件，把需要全局忽略的文件类型塞到这个文件里。<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .gitignore_global</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line"><span class="comment">######</span><span class="comment">## OS generated files ########</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line">.DS_Store</span><br><span class="line">.DS_Store?</span><br><span class="line">*.swp</span><br><span class="line">._*</span><br><span class="line">.Spotlight-V100</span><br><span class="line">.Trashes</span><br><span class="line">Icon?</span><br><span class="line">ehthumbs.db</span><br><span class="line">Thumbs.db</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment"># Packages #############</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line">*<span class="number">.7</span>z</span><br><span class="line">*.dmg</span><br><span class="line">*.gz</span><br><span class="line">*.iso</span><br><span class="line">*.jar</span><br><span class="line">*.rar</span><br><span class="line">*.tar</span><br><span class="line">*.zip</span><br></pre></td></tr></table></figure></p>
+<p>2.在 ~/.gitconfig 中引入 .gitignore_global。<br>这是我的.gitconfig 文件:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = xiaoronglv</span><br><span class="line">    email = xxxxx@gmail.com</span><br><span class="line">[<span class="keyword">push</span>]</span><br><span class="line">    <span class="keyword">default</span> = matching</span><br><span class="line">[core]</span><br><span class="line">    excludesfile = <span class="regexp">/Users/</span>xiaoronglv<span class="regexp">/.gitignore_global</span></span><br></pre></td></tr></table></figure></p>
+<p>在所有的文件夹下 .DS_Store .swp .zip 等文件类型会被 Git 自动忽略。</p>
+<p>demo</p>
+<p>参考资料</p>
+<p><a href="https://help.github.com/articles/ignoring-files/" target="_blank" rel="external">Github: Create a global .gitignore</a><br><a href="http://osxdaily.com/2009/12/31/what-is-a-ds_store-file/" target="_blank" rel="external">What is .DS_Store file?</a><br><a href="http://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder" target="_blank" rel="external">.gitignore all the .DS_Store files in every folder and subfolder</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/10/19/gitignorefile/" data-id="cifxfz67k0003b7s50mdv5q2u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-IBDesignable-IBInspectable" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/22/IBDesignable-IBInspectable/" class="article-date">
@@ -94,12 +141,12 @@
 <p>标记一个自定义视图为 IBDesignable，只需在类名前加上 @IBDesignable 的前缀（或是 Objective-C 里的 IB_DESIGNABLE 宏）。你的初始化、布置和绘制方法将被用来在画布上渲染你的自定义视图：</p>
 <p>#@IBInspectable</p>
 <p>IBInspectable 属性提供了访问旧功能的新方式：用户自定义的运行时属性。从目前的身份检查器（identity inspector）中访问，这些属性在 Interface Builder 被整合到 Xcode 之前就可用了。他们提供了一个强有力的机制来配置一个 NIB，XIB，或者 storyboard 实例中的任何键值编码（key-value coded）属性：</p>
-<p>User-Defined Runtime Attributes<br><img src="/images/IBInspectable-runtime-attributes.png" alt="img"></p>
+<p>User-Defined Runtime Attributes<br><img src="images/IBInspectable-runtime-attributes.png" alt="img"></p>
 <p>虽然功能强大，运行时属性可能会使工作很繁琐。一个属性的关键字路径，类型和属性值需要在每个实例设置，没有任何自动完成或输入提示，这就需要前往文档或自定义子类的源代码仔细检查设置。 IBInspectable 属性彻底的解决了这个问题：在 Xcode 6，你现在可以指定任何属性作为可检查项并为你的自定义类建立了一个用户界面。</p>
 <p>例如，在一个 UIView 子类里，这些属性用它们的值来更新背景层：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">Swift</span></span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> cornerRadius: <span class="type">CGFloat</span> = <span class="number">0</span> &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.cornerRadius = cornerRadius</span><br><span class="line">       layer.masksToBounds = cornerRadius &gt; <span class="number">0</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> borderWidth: <span class="type">CGFloat</span> = <span class="number">0</span> &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.borderWidth = borderWidth</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> borderColor: <span class="type">UIColor</span>? &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.borderColor = borderColor?.<span class="type">CGColor</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>标有 @IBInspectable（或是 Objective-C 中的 IBInspectable），他们就可以很容易在 Interface Builder 的观察面板（inspector panel）里编辑。需要注意的是 Xcode 在这里做了更多的事，属性名称是从 camel- 转换为 title- 模式 并且相关的名称组合在一起：</p>
-<p>IBInspectable Attribute Inspector<br><img src="/images/IBInspectable-inspectable.png" alt="img"></p>
+<p>IBInspectable Attribute Inspector<br><img src="images/IBInspectable-inspectable.png" alt="img"></p>
 <p>因为可检查属性仅仅是用户定义的运行时属性顶部的接口，所以支持相同的类型列表：布尔，字符串和数字（即，NSNumber 或任何数值类型），以及 CGPoint、CGSize、CGRect、UIColor 和 NSRange，额外增加了 UIImage。</p>
 <p>那些已经熟悉运行时属性的人将注意到在上面的例子中有一些问题。UIColor 是里面唯一支持色彩的类型，而不是原生支持视图 CALayer 的 CGColor。borderColor 会计算 UIColor 属性（通过运行时属性设置）并映射到该层需要的 CGColor。</p>
 <p>让现有的类型可观察</p>
@@ -109,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/" data-id="ciezazizy0003uvs5l8xyc4x8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/" data-id="cifxfz67m0004b7s5zkr8xget" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IBDesignable-IBInspectable/">IBDesignable &  IBInspectable'</a></li></ul>
@@ -153,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="ciezazj010006uvs570hoyru4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cifxfz67o0007b7s5h9ltyx4u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -191,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/23/octopress-xie-wen-zhang/" data-id="ciezazj020007uvs55tq772do" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/04/23/octopress-xie-wen-zhang/" data-id="cifxfz67p0008b7s5954p0sdp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +284,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/" data-id="ciezazj040008uvs5k10qz083" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/" data-id="cifxfz67q0009b7s5v08fxd3d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" data-id="ciezazj06000buvs5iryamwxe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" data-id="cifxfz67s000cb7s5c8hky5a2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -338,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" data-id="ciezazj08000duvs5sftkji29" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" data-id="cifxfz67t000eb7s5k1k6d6ij" class="article-share-link">Share</a>
       
       
     </footer>
@@ -394,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/" data-id="ciezazj0a000fuvs5tw8pg3z9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/" data-id="cifxfz67v000gb7s59ktr8phn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -445,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/18/chu-shi-ios/" data-id="ciezazj0d000huvs5us1rwztv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/18/chu-shi-ios/" data-id="cifxfz67y000ib7s5smohw4ss" class="article-share-link">Share</a>
       
       
     </footer>
@@ -486,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/" data-id="ciezaziyz0000uvs5aqmyjgmq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/" data-id="cifxfz6730000b7s5ybegzpwf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -497,52 +544,10 @@
 
 
   
-    <article id="post-zhong-wen-ban" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/07/17/zhong-wen-ban/" class="article-date">
-  <time datetime="2014-07-17T03:45:14.000Z" itemprop="datePublished">2014-07-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/summary/">summary</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/07/17/zhong-wen-ban/">开博文</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直感觉应该写点东西来记录自己学过的知识，却一直缺乏行动。最近手头上的项目因为莫名的原因停滞了，于是抽起了筋，研究了下<a href="http://octopress.org/"><code>Otcopress</code></a>搭建了我的第一个blog。
-        
-          <p class="article-more-link">
-            <a href="/2014/07/17/zhong-wen-ban/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/17/zhong-wen-ban/" data-id="ciezazj0h000juvs5y8j4zuq2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </section>
         
@@ -579,7 +584,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -589,6 +594,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/10/19/gitignorefile/">Git 全局忽略 不需要的版本跟踪的文件</a>
+          </li>
         
           <li>
             <a href="/2015/09/22/IBDesignable-IBInspectable/">IBDesignable &amp;  IBInspectable</a>
@@ -604,10 +613,6 @@
         
           <li>
             <a href="/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/">在Xcode6里使用矢量图-译</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/">实现UISearchDisplayController 默认显示初始数据UITableView效果</a>
           </li>
         
       </ul>

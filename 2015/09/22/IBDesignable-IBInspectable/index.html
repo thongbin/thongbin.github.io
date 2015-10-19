@@ -15,7 +15,7 @@
 #@IBDesignable顾名思义，从命名上就能看出这个是跟UI开发有关的，自定义视图的时候，当应用到 UIView 或 NSView 子类中的时候，@ IBDesignable 让 Interface Builder 知道它应该在画布上直接渲染视图。你会看到你的自定义视图在每次更改后">
 <meta property="og:image" content="http://yoursite.com/images/IBInspectable-runtime-attributes.png">
 <meta property="og:image" content="http://yoursite.com/images/IBInspectable-inspectable.png">
-<meta property="og:updated_time" content="2015-09-25T07:04:12.000Z">
+<meta property="og:updated_time" content="2015-09-25T07:05:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IBDesignable &  IBInspectable">
 <meta name="twitter:description" content="Xcode6开始，Apple提供给开发者两个很给力的宏（在Objective－C是宏，在Swift里是关键字）
@@ -98,12 +98,12 @@
 <p>标记一个自定义视图为 IBDesignable，只需在类名前加上 @IBDesignable 的前缀（或是 Objective-C 里的 IB_DESIGNABLE 宏）。你的初始化、布置和绘制方法将被用来在画布上渲染你的自定义视图：</p>
 <p>#@IBInspectable</p>
 <p>IBInspectable 属性提供了访问旧功能的新方式：用户自定义的运行时属性。从目前的身份检查器（identity inspector）中访问，这些属性在 Interface Builder 被整合到 Xcode 之前就可用了。他们提供了一个强有力的机制来配置一个 NIB，XIB，或者 storyboard 实例中的任何键值编码（key-value coded）属性：</p>
-<p>User-Defined Runtime Attributes<br><img src="/images/IBInspectable-runtime-attributes.png" alt="img"></p>
+<p>User-Defined Runtime Attributes<br><img src="images/IBInspectable-runtime-attributes.png" alt="img"></p>
 <p>虽然功能强大，运行时属性可能会使工作很繁琐。一个属性的关键字路径，类型和属性值需要在每个实例设置，没有任何自动完成或输入提示，这就需要前往文档或自定义子类的源代码仔细检查设置。 IBInspectable 属性彻底的解决了这个问题：在 Xcode 6，你现在可以指定任何属性作为可检查项并为你的自定义类建立了一个用户界面。</p>
 <p>例如，在一个 UIView 子类里，这些属性用它们的值来更新背景层：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">Swift</span></span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> cornerRadius: <span class="type">CGFloat</span> = <span class="number">0</span> &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.cornerRadius = cornerRadius</span><br><span class="line">       layer.masksToBounds = cornerRadius &gt; <span class="number">0</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> borderWidth: <span class="type">CGFloat</span> = <span class="number">0</span> &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.borderWidth = borderWidth</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> borderColor: <span class="type">UIColor</span>? &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.borderColor = borderColor?.<span class="type">CGColor</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>标有 @IBInspectable（或是 Objective-C 中的 IBInspectable），他们就可以很容易在 Interface Builder 的观察面板（inspector panel）里编辑。需要注意的是 Xcode 在这里做了更多的事，属性名称是从 camel- 转换为 title- 模式 并且相关的名称组合在一起：</p>
-<p>IBInspectable Attribute Inspector<br><img src="/images/IBInspectable-inspectable.png" alt="img"></p>
+<p>IBInspectable Attribute Inspector<br><img src="images/IBInspectable-inspectable.png" alt="img"></p>
 <p>因为可检查属性仅仅是用户定义的运行时属性顶部的接口，所以支持相同的类型列表：布尔，字符串和数字（即，NSNumber 或任何数值类型），以及 CGPoint、CGSize、CGRect、UIColor 和 NSRange，额外增加了 UIImage。</p>
 <p>那些已经熟悉运行时属性的人将注意到在上面的例子中有一些问题。UIColor 是里面唯一支持色彩的类型，而不是原生支持视图 CALayer 的 CGColor。borderColor 会计算 UIColor 属性（通过运行时属性设置）并映射到该层需要的 CGColor。</p>
 <p>让现有的类型可观察</p>
@@ -113,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/" data-id="ciezazizy0003uvs5l8xyc4x8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/" data-id="cifxfz67m0004b7s5zkr8xget" class="article-share-link">Share</a>
       
         <section id="comments">
           <!-- 多说评论框 start -->
@@ -142,6 +142,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/10/19/gitignorefile/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git 全局忽略 不需要的版本跟踪的文件
+        
+      </div>
+    </a>
   
   
     <a href="/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" id="article-nav-older" class="article-nav-link-wrap">
@@ -190,7 +199,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -200,6 +209,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/10/19/gitignorefile/">Git 全局忽略 不需要的版本跟踪的文件</a>
+          </li>
         
           <li>
             <a href="/2015/09/22/IBDesignable-IBInspectable/">IBDesignable &amp;  IBInspectable</a>
@@ -215,10 +228,6 @@
         
           <li>
             <a href="/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/">在Xcode6里使用矢量图-译</a>
-          </li>
-        
-          <li>
-            <a href="/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/">实现UISearchDisplayController 默认显示初始数据UITableView效果</a>
           </li>
         
       </ul>
