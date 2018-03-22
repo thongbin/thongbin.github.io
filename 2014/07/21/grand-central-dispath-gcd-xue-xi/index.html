@@ -5,37 +5,17 @@
   
   <title>Grand Central Dispatch(GCD)学习 | Kelvin Tong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习自：
-nixzhu 翻译的关于GCD的文章1
-nixzhu 翻译的关于GCD的文章2
-Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。
-特性
-基于队列工作 dispatch queue，严格按照FIFO（first in first out）
-平行排队特定任务
-利用任何可用">
+  <meta name="description" content="学习自： nixzhu 翻译的关于GCD的文章1 nixzhu 翻译的关于GCD的文章2 Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。 特性 基于队列工作 dispatch queue，严格按照FIFO（first in first out） 平行排队特定任务 利用任何可用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grand Central Dispatch(GCD)学习">
 <meta property="og:url" content="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
-<meta property="og:description" content="学习自：
-nixzhu 翻译的关于GCD的文章1
-nixzhu 翻译的关于GCD的文章2
-Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。
-特性
-基于队列工作 dispatch queue，严格按照FIFO（first in first out）
-平行排队特定任务
-利用任何可用">
+<meta property="og:description" content="学习自： nixzhu 翻译的关于GCD的文章1 nixzhu 翻译的关于GCD的文章2 Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。 特性 基于队列工作 dispatch queue，严格按照FIFO（first in first out） 平行排队特定任务 利用任何可用">
+<meta property="og:locale" content="Simplified Chinese">
 <meta property="og:updated_time" content="2015-08-20T19:38:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Grand Central Dispatch(GCD)学习">
-<meta name="twitter:description" content="学习自：
-nixzhu 翻译的关于GCD的文章1
-nixzhu 翻译的关于GCD的文章2
-Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。
-特性
-基于队列工作 dispatch queue，严格按照FIFO（first in first out）
-平行排队特定任务
-利用任何可用">
+<meta name="twitter:description" content="学习自： nixzhu 翻译的关于GCD的文章1 nixzhu 翻译的关于GCD的文章2 Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。 特性 基于队列工作 dispatch queue，严格按照FIFO（first in first out） 平行排队特定任务 利用任何可用">
   
     <link rel="alternative" href="/atom.xml" title="Kelvin Tong" type="application/atom+xml">
   
@@ -43,7 +23,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -81,7 +61,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -114,9 +94,9 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
     <div class="article-entry" itemprop="articleBody">
       
         <p>学习自：</p>
-<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md" target="_blank" rel="external">nixzhu 翻译的关于GCD的文章1</a></p>
-<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-05-14-grand-central-dispatch-in-depth-part-2.md" target="_blank" rel="external">nixzhu 翻译的关于GCD的文章2</a></p>
-<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="external">官方文档</a>。<br><br></p>
+<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md" target="_blank" rel="noopener">nixzhu 翻译的关于GCD的文章1</a></p>
+<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-05-14-grand-central-dispatch-in-depth-part-2.md" target="_blank" rel="noopener">nixzhu 翻译的关于GCD的文章2</a></p>
+<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="noopener">官方文档</a>。<br><br></p>
 <h3 id="特性">特性</h3><ul>
 <li>基于队列工作 dispatch queue，严格按照FIFO（first in first out）</li>
 <li>平行排队特定任务</li>
@@ -128,7 +108,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
 <li>串行队列，多个serial queue之间同步并发执行，串行fifo队列，适合用于按指定顺序执行的任务，保持线程安全，串行同步安全地访问资源，在应用程序里面，必须明确指定串行队列，可以已根据需要创建足够多的，但不要用serial queue 代替 concurrent queue 处理任务庞大的任务。</li>
 <li>一次执行一个任务，按添加顺序执行</li>
 <li>每个任务只会在前一个任务完成之后才开始执行</li>
-<li>任务执行之间的时间间隔不明朗，完全靠GCD本身调度<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_create(&lt;<span class="preprocessor">#const char *label#&gt;, <span class="title">&lt;#dispatch_queue_attr_t attr#&gt;</span>)</span></span><br></pre></td></tr></table></figure>
+<li>任务执行之间的时间间隔不明朗，完全靠GCD本身调度<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_create(&lt;<span class="meta">#const char *label#&gt;, <span class="meta-string">&lt;#dispatch_queue_attr_t attr#&gt;</span>)</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
@@ -141,7 +121,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
 <li>并行队列，任务从队列被列出是按FIFO规则的，但是会并行执行</li>
 <li>执行完成的顺序是随机的</li>
 <li>适合并行处理数量庞大的任务，GCD可以提供四种此类并行队列，只通过各自的优先级不同去区别开来。</li>
-<li>注意，因为是全局队列，所以系统同时也在使用这些队列<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dispatch_get_global_queue(&lt;<span class="preprocessor">#dispatch_queue_priority_t priority#&gt;, <span class="title">&lt;#unsigned long flags#&gt;</span>)</span></span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_HIGH </span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_DEFAULT </span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_LOW </span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_BACKGROUND</span><br></pre></td></tr></table></figure>
+<li>注意，因为是全局队列，所以系统同时也在使用这些队列<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dispatch_get_global_queue(&lt;<span class="meta">#dispatch_queue_priority_t priority#&gt;, <span class="meta-string">&lt;#unsigned long flags#&gt;</span>)</span></span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_HIGH </span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_DEFAULT </span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_LOW </span><br><span class="line"></span><br><span class="line">DISPATCH_QUEUE_PRIORITY_BACKGROUND</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="Custom_Queue_自定义队列">Custom Queue 自定义队列</h3><ul>
@@ -149,7 +129,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
 </ul>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dispath_creat_queue(<span class="string">"com.thongbin.custom.queue"</span>,dispath_queue_sttr_t att)</span><br></pre></td></tr></table></figure>
 <h1 id="使用">使用</h1><h3 id="dispatch_once">dispatch_once</h3><ul>
-<li>dispatch_once执行一个区块对象，在整个应用的生命周期只执行一次，非常适合用于已单列模式创建全局的对象。<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Executes a block object once and only once <span class="keyword">for</span> the lifetime of an application.<span class="comment">//官方解释</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">void</span> <span class="built_in">dispatch_once</span>(</span><br><span class="line">   <span class="built_in">dispatch_once_t</span> *predicate,</span><br><span class="line">   dispatch_block_t block);</span><br><span class="line">   </span><br><span class="line"><span class="comment">//   example</span></span><br><span class="line">	+(instancetype)shareDefaultManager</span><br><span class="line">	&#123;</span><br><span class="line">    <span class="keyword">static</span> TBReachabilityManager *_tbDefaultManager = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> once_t;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;once_t, ^()&#123;</span><br><span class="line">         _tbDefaultManager = [[<span class="keyword">self</span> alloc]init];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> _tbDefaultManager;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<li>dispatch_once执行一个区块对象，在整个应用的生命周期只执行一次，非常适合用于已单列模式创建全局的对象。<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Executes a block object once and only once <span class="keyword">for</span> the lifetime of an application.<span class="comment">//官方解释</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">void</span> <span class="built_in">dispatch_once</span>(</span><br><span class="line">   <span class="built_in">dispatch_once_t</span> *predicate,</span><br><span class="line">   dispatch_block_t block);</span><br><span class="line">   </span><br><span class="line"><span class="comment">//   example</span></span><br><span class="line">	+(<span class="keyword">instancetype</span>)shareDefaultManager</span><br><span class="line">	&#123;</span><br><span class="line">    <span class="keyword">static</span> TBReachabilityManager *_tbDefaultManager = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> once_t;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;once_t, ^()&#123;</span><br><span class="line">         _tbDefaultManager = [[<span class="keyword">self</span> alloc]init];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> _tbDefaultManager;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="dispatch_async">dispatch_async</h3><ul>
@@ -168,7 +148,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
 <li>以组的方式关联一组block，等block都执行完成，就发起完成的通知，<code>group里面的block是并行执行的</code>。<br><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Submits a block to a dispatch queue and associates the block with the specified dispatch group.</span><br><span class="line"></span><br><span class="line">   <span class="keyword">void</span> dispatch_group_async(</span><br><span class="line">   dispatch_group_t group,</span><br><span class="line">   <span class="built_in">dispatch_queue_t</span> queue,</span><br><span class="line">   dispatch_block_t block);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h4 id="使用例子">使用例子</h4><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue<span class="list">(<span class="keyword">DISPATCH_QUEUE_PRIORITY_DEFAULT</span>, <span class="number">0</span>)</span><span class="comment">;</span></span><br><span class="line">dispatch_group_t group = dispatch_group_create<span class="list">()</span><span class="comment">;</span></span><br><span class="line">dispatch_group_async<span class="list">(<span class="keyword">group</span>, queue, ^&#123;</span><br><span class="line">    [NSThread sleepForTimeInterval:<span class="number">1</span>]<span class="comment">;</span></span><br><span class="line">    NSLog<span class="list">(@<span class="string">"group1"</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;)</span><span class="comment">;</span></span><br><span class="line">dispatch_group_async<span class="list">(<span class="keyword">group</span>, queue, ^&#123;</span><br><span class="line">    [NSThread sleepForTimeInterval:<span class="number">2</span>]<span class="comment">;</span></span><br><span class="line">    NSLog<span class="list">(@<span class="string">"group2"</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;)</span><span class="comment">;</span></span><br><span class="line">dispatch_group_async<span class="list">(<span class="keyword">group</span>, queue, ^&#123;</span><br><span class="line">    [NSThread sleepForTimeInterval:<span class="number">3</span>]<span class="comment">;</span></span><br><span class="line">    NSLog<span class="list">(@<span class="string">"group3"</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;)</span><span class="comment">;</span></span><br><span class="line">dispatch_group_notify<span class="list">(<span class="keyword">group</span>, dispatch_get_main_queue<span class="list">()</span>, ^&#123;</span><br><span class="line">    NSLog<span class="list">(@<span class="string">"updateUi"</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;)</span><span class="comment">;</span></span><br><span class="line">dispatch_release<span class="list">(<span class="keyword">group</span>)</span><span class="comment">;//释放group</span></span><br></pre></td></tr></table></figure>
+<h4 id="使用例子">使用例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br><span class="line">dispatch_group_t group = dispatch_group_create();</span><br><span class="line">dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">    [NSThread sleepForTimeInterval:1];</span><br><span class="line">    NSLog(@&quot;group1&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">    [NSThread sleepForTimeInterval:2];</span><br><span class="line">    NSLog(@&quot;group2&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">    [NSThread sleepForTimeInterval:3];</span><br><span class="line">    NSLog(@&quot;group3&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    NSLog(@&quot;updateUi&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">dispatch_release(group);//释放group</span><br></pre></td></tr></table></figure>
 <p>这里面最后还调用了dispatch_group_notify，因为前面提交的block都被关联到同一个group里面，当group里面的block都执行完成后，就需要调用dispatch_group_notify做收尾。<br><br></p>
 <h3 id="dispatch_apply">dispatch_apply</h3><ul>
 <li>多次执行传入的block</li>
@@ -180,7 +160,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/" data-id="cifxfz67v000gb7s59ktr8phn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/" data-id="cjf1zsfmd00055hs5sv41r3i3" class="article-share-link">Share</a>
       
         <section id="comments">
           <!-- 多说评论框 start -->
@@ -307,7 +287,7 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Kelvin<br>
+      &copy; 2018 Kelvin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -327,11 +307,11 @@ Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次�
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

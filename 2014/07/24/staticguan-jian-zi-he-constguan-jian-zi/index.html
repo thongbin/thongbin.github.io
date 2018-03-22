@@ -5,40 +5,17 @@
   
   <title>static关键字和const关键字 | Kelvin Tong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下
-static直接说它的作用可能会更直观，使用static关键字修饰的变量：
-
-称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。
-只会初始化一次
-适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。
-
-const
-常量，初始化了">
+  <meta name="description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下 static直接说它的作用可能会更直观，使用static关键字修饰的变量：  称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。 只会初始化一次 适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。  const 常量，初始化了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="static关键字和const关键字">
 <meta property="og:url" content="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
-<meta property="og:description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下
-static直接说它的作用可能会更直观，使用static关键字修饰的变量：
-
-称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。
-只会初始化一次
-适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。
-
-const
-常量，初始化了">
+<meta property="og:description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下 static直接说它的作用可能会更直观，使用static关键字修饰的变量：  称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。 只会初始化一次 适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。  const 常量，初始化了">
+<meta property="og:locale" content="Simplified Chinese">
 <meta property="og:updated_time" content="2015-08-20T19:38:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="static关键字和const关键字">
-<meta name="twitter:description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下
-static直接说它的作用可能会更直观，使用static关键字修饰的变量：
-
-称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。
-只会初始化一次
-适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。
-
-const
-常量，初始化了">
+<meta name="twitter:description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下 static直接说它的作用可能会更直观，使用static关键字修饰的变量：  称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。 只会初始化一次 适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。  const 常量，初始化了">
   
     <link rel="alternative" href="/atom.xml" title="Kelvin Tong" type="application/atom+xml">
   
@@ -46,7 +23,7 @@ const
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -84,7 +61,7 @@ const
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -130,7 +107,7 @@ const
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" data-id="cifxfz67t000eb7s5k1k6d6ij" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" data-id="cjf1zsfmc00045hs5na3qv82k" class="article-share-link">Share</a>
       
         <section id="comments">
           <!-- 多说评论框 start -->
@@ -257,7 +234,7 @@ const
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Kelvin<br>
+      &copy; 2018 Kelvin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -277,11 +254,11 @@ const
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

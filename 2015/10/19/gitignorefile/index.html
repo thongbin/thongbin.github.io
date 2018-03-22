@@ -5,22 +5,17 @@
   
   <title>Git 全局忽略 不需要的版本跟踪的文件 | Kelvin Tong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="######摘录让 GIT 全局性的忽略 .DS_STORE
-在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件
-Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略">
+  <meta name="description" content="######摘录让 GIT 全局性的忽略 .DS_STORE 在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件 Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 全局忽略 不需要的版本跟踪的文件">
 <meta property="og:url" content="http://yoursite.com/2015/10/19/gitignorefile/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
-<meta property="og:description" content="######摘录让 GIT 全局性的忽略 .DS_STORE
-在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件
-Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略">
+<meta property="og:description" content="######摘录让 GIT 全局性的忽略 .DS_STORE 在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件 Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略">
+<meta property="og:locale" content="Simplified Chinese">
 <meta property="og:updated_time" content="2015-10-19T04:30:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 全局忽略 不需要的版本跟踪的文件">
-<meta name="twitter:description" content="######摘录让 GIT 全局性的忽略 .DS_STORE
-在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件
-Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略">
+<meta name="twitter:description" content="######摘录让 GIT 全局性的忽略 .DS_STORE 在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件 Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略">
   
     <link rel="alternative" href="/atom.xml" title="Kelvin Tong" type="application/atom+xml">
   
@@ -28,7 +23,7 @@ Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹�
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -66,7 +61,7 @@ Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹�
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -94,21 +89,21 @@ Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="external">让 GIT 全局性的忽略 .DS_STORE</a></p>
+        <p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></p>
 <p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
 <p>Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文件吗？</p>
 <p>按照以下两步就可实现</p>
-<p>创建 ==~/.gitignore_global== 文件，把需要全局忽略的文件类型塞到这个文件里。<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .gitignore_global</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line"><span class="comment">######</span><span class="comment">## OS generated files ########</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line">.DS_Store</span><br><span class="line">.DS_Store?</span><br><span class="line">*.swp</span><br><span class="line">._*</span><br><span class="line">.Spotlight-V100</span><br><span class="line">.Trashes</span><br><span class="line">Icon?</span><br><span class="line">ehthumbs.db</span><br><span class="line">Thumbs.db</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment"># Packages #############</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line">*<span class="number">.7</span>z</span><br><span class="line">*.dmg</span><br><span class="line">*.gz</span><br><span class="line">*.iso</span><br><span class="line">*.jar</span><br><span class="line">*.rar</span><br><span class="line">*.tar</span><br><span class="line">*.zip</span><br></pre></td></tr></table></figure></p>
-<p>2.在 ~/.gitconfig 中引入 .gitignore_global。<br>这是我的.gitconfig 文件:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = xiaoronglv</span><br><span class="line">    email = xxxxx@gmail.com</span><br><span class="line">[<span class="keyword">push</span>]</span><br><span class="line">    <span class="keyword">default</span> = matching</span><br><span class="line">[core]</span><br><span class="line">    excludesfile = <span class="regexp">/Users/</span>xiaoronglv<span class="regexp">/.gitignore_global</span></span><br></pre></td></tr></table></figure></p>
+<p>创建 ==~/.gitignore_global== 文件，把需要全局忽略的文件类型塞到这个文件里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># .gitignore_global</span><br><span class="line">####################################</span><br><span class="line">######## OS generated files ########</span><br><span class="line">####################################</span><br><span class="line">.DS_Store</span><br><span class="line">.DS_Store?</span><br><span class="line">*.swp</span><br><span class="line">._*</span><br><span class="line">.Spotlight-V100</span><br><span class="line">.Trashes</span><br><span class="line">Icon?</span><br><span class="line">ehthumbs.db</span><br><span class="line">Thumbs.db</span><br><span class="line">####################################</span><br><span class="line">############# Packages #############</span><br><span class="line">####################################</span><br><span class="line">*.7z</span><br><span class="line">*.dmg</span><br><span class="line">*.gz</span><br><span class="line">*.iso</span><br><span class="line">*.jar</span><br><span class="line">*.rar</span><br><span class="line">*.tar</span><br><span class="line">*.zip</span><br></pre></td></tr></table></figure></p>
+<p>2.在 ~/.gitconfig 中引入 .gitignore_global。<br>这是我的.gitconfig 文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = xiaoronglv</span><br><span class="line">    email = xxxxx@gmail.com</span><br><span class="line">[push]</span><br><span class="line">    default = matching</span><br><span class="line">[core]</span><br><span class="line">    excludesfile = /Users/xiaoronglv/.gitignore_global</span><br></pre></td></tr></table></figure></p>
 <p>在所有的文件夹下 .DS_Store .swp .zip 等文件类型会被 Git 自动忽略。</p>
 <p>demo</p>
 <p>参考资料</p>
-<p><a href="https://help.github.com/articles/ignoring-files/" target="_blank" rel="external">Github: Create a global .gitignore</a><br><a href="http://osxdaily.com/2009/12/31/what-is-a-ds_store-file/" target="_blank" rel="external">What is .DS_Store file?</a><br><a href="http://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder" target="_blank" rel="external">.gitignore all the .DS_Store files in every folder and subfolder</a></p>
+<p><a href="https://help.github.com/articles/ignoring-files/" target="_blank" rel="noopener">Github: Create a global .gitignore</a><br><a href="http://osxdaily.com/2009/12/31/what-is-a-ds_store-file/" target="_blank" rel="noopener">What is .DS_Store file?</a><br><a href="http://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder" target="_blank" rel="noopener">.gitignore all the .DS_Store files in every folder and subfolder</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/19/gitignorefile/" data-id="cifxfz67k0003b7s50mdv5q2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/19/gitignorefile/" data-id="cjf1zsfmo000h5hs5uvixsnjh" class="article-share-link">Share</a>
       
         <section id="comments">
           <!-- 多说评论框 start -->
@@ -226,7 +221,7 @@ Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹�
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Kelvin<br>
+      &copy; 2018 Kelvin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -246,11 +241,11 @@ Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹�
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

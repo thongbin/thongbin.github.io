@@ -5,15 +5,13 @@
   
   <title>Kelvin Tong</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Kelvin Tong">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
-<meta property="og:description">
+<meta property="og:locale" content="Simplified Chinese">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kelvin Tong">
-<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Kelvin Tong" type="application/atom+xml">
   
@@ -21,7 +19,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -59,7 +57,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -89,21 +87,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="external">让 GIT 全局性的忽略 .DS_STORE</a></p>
+        <p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></p>
 <p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
 <p>Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文件吗？</p>
 <p>按照以下两步就可实现</p>
-<p>创建 ==~/.gitignore_global== 文件，把需要全局忽略的文件类型塞到这个文件里。<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .gitignore_global</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line"><span class="comment">######</span><span class="comment">## OS generated files ########</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line">.DS_Store</span><br><span class="line">.DS_Store?</span><br><span class="line">*.swp</span><br><span class="line">._*</span><br><span class="line">.Spotlight-V100</span><br><span class="line">.Trashes</span><br><span class="line">Icon?</span><br><span class="line">ehthumbs.db</span><br><span class="line">Thumbs.db</span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment"># Packages #############</span></span><br><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span></span><br><span class="line">*<span class="number">.7</span>z</span><br><span class="line">*.dmg</span><br><span class="line">*.gz</span><br><span class="line">*.iso</span><br><span class="line">*.jar</span><br><span class="line">*.rar</span><br><span class="line">*.tar</span><br><span class="line">*.zip</span><br></pre></td></tr></table></figure></p>
-<p>2.在 ~/.gitconfig 中引入 .gitignore_global。<br>这是我的.gitconfig 文件:<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = xiaoronglv</span><br><span class="line">    email = xxxxx@gmail.com</span><br><span class="line">[<span class="keyword">push</span>]</span><br><span class="line">    <span class="keyword">default</span> = matching</span><br><span class="line">[core]</span><br><span class="line">    excludesfile = <span class="regexp">/Users/</span>xiaoronglv<span class="regexp">/.gitignore_global</span></span><br></pre></td></tr></table></figure></p>
+<p>创建 ==~/.gitignore_global== 文件，把需要全局忽略的文件类型塞到这个文件里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># .gitignore_global</span><br><span class="line">####################################</span><br><span class="line">######## OS generated files ########</span><br><span class="line">####################################</span><br><span class="line">.DS_Store</span><br><span class="line">.DS_Store?</span><br><span class="line">*.swp</span><br><span class="line">._*</span><br><span class="line">.Spotlight-V100</span><br><span class="line">.Trashes</span><br><span class="line">Icon?</span><br><span class="line">ehthumbs.db</span><br><span class="line">Thumbs.db</span><br><span class="line">####################################</span><br><span class="line">############# Packages #############</span><br><span class="line">####################################</span><br><span class="line">*.7z</span><br><span class="line">*.dmg</span><br><span class="line">*.gz</span><br><span class="line">*.iso</span><br><span class="line">*.jar</span><br><span class="line">*.rar</span><br><span class="line">*.tar</span><br><span class="line">*.zip</span><br></pre></td></tr></table></figure></p>
+<p>2.在 ~/.gitconfig 中引入 .gitignore_global。<br>这是我的.gitconfig 文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = xiaoronglv</span><br><span class="line">    email = xxxxx@gmail.com</span><br><span class="line">[push]</span><br><span class="line">    default = matching</span><br><span class="line">[core]</span><br><span class="line">    excludesfile = /Users/xiaoronglv/.gitignore_global</span><br></pre></td></tr></table></figure></p>
 <p>在所有的文件夹下 .DS_Store .swp .zip 等文件类型会被 Git 自动忽略。</p>
 <p>demo</p>
 <p>参考资料</p>
-<p><a href="https://help.github.com/articles/ignoring-files/" target="_blank" rel="external">Github: Create a global .gitignore</a><br><a href="http://osxdaily.com/2009/12/31/what-is-a-ds_store-file/" target="_blank" rel="external">What is .DS_Store file?</a><br><a href="http://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder" target="_blank" rel="external">.gitignore all the .DS_Store files in every folder and subfolder</a></p>
+<p><a href="https://help.github.com/articles/ignoring-files/" target="_blank" rel="noopener">Github: Create a global .gitignore</a><br><a href="http://osxdaily.com/2009/12/31/what-is-a-ds_store-file/" target="_blank" rel="noopener">What is .DS_Store file?</a><br><a href="http://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder" target="_blank" rel="noopener">.gitignore all the .DS_Store files in every folder and subfolder</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/10/19/gitignorefile/" data-id="cifxfz67k0003b7s50mdv5q2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/10/19/gitignorefile/" data-id="cjf1zsfmo000h5hs5uvixsnjh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,19 +142,19 @@
 <p>User-Defined Runtime Attributes<br><img src="images/IBInspectable-runtime-attributes.png" alt="img"></p>
 <p>虽然功能强大，运行时属性可能会使工作很繁琐。一个属性的关键字路径，类型和属性值需要在每个实例设置，没有任何自动完成或输入提示，这就需要前往文档或自定义子类的源代码仔细检查设置。 IBInspectable 属性彻底的解决了这个问题：在 Xcode 6，你现在可以指定任何属性作为可检查项并为你的自定义类建立了一个用户界面。</p>
 <p>例如，在一个 UIView 子类里，这些属性用它们的值来更新背景层：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">Swift</span></span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> cornerRadius: <span class="type">CGFloat</span> = <span class="number">0</span> &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.cornerRadius = cornerRadius</span><br><span class="line">       layer.masksToBounds = cornerRadius &gt; <span class="number">0</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> borderWidth: <span class="type">CGFloat</span> = <span class="number">0</span> &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.borderWidth = borderWidth</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> borderColor: <span class="type">UIColor</span>? &#123;</span><br><span class="line">   <span class="keyword">didSet</span> &#123;</span><br><span class="line">       layer.borderColor = borderColor?.<span class="type">CGColor</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Swift</span><br><span class="line">@IBInspectable var cornerRadius: CGFloat = 0 &#123;</span><br><span class="line">   didSet &#123;</span><br><span class="line">       layer.cornerRadius = cornerRadius</span><br><span class="line">       layer.masksToBounds = cornerRadius &gt; 0</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">@IBInspectable var borderWidth: CGFloat = 0 &#123;</span><br><span class="line">   didSet &#123;</span><br><span class="line">       layer.borderWidth = borderWidth</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">@IBInspectable var borderColor: UIColor? &#123;</span><br><span class="line">   didSet &#123;</span><br><span class="line">       layer.borderColor = borderColor?.CGColor</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>标有 @IBInspectable（或是 Objective-C 中的 IBInspectable），他们就可以很容易在 Interface Builder 的观察面板（inspector panel）里编辑。需要注意的是 Xcode 在这里做了更多的事，属性名称是从 camel- 转换为 title- 模式 并且相关的名称组合在一起：</p>
 <p>IBInspectable Attribute Inspector<br><img src="images/IBInspectable-inspectable.png" alt="img"></p>
 <p>因为可检查属性仅仅是用户定义的运行时属性顶部的接口，所以支持相同的类型列表：布尔，字符串和数字（即，NSNumber 或任何数值类型），以及 CGPoint、CGSize、CGRect、UIColor 和 NSRange，额外增加了 UIImage。</p>
 <p>那些已经熟悉运行时属性的人将注意到在上面的例子中有一些问题。UIColor 是里面唯一支持色彩的类型，而不是原生支持视图 CALayer 的 CGColor。borderColor 会计算 UIColor 属性（通过运行时属性设置）并映射到该层需要的 CGColor。</p>
 <p>让现有的类型可观察</p>
-<p>内置的 Cocoa 类型如果在 Interface Builder 中的属性检查器中没有列出也可以通过扩展来使属性可视。如果你喜欢圆角，你一定会喜欢这个 UIView 扩展：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Swift</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UIView</span> </span>&#123;</span><br><span class="line">    <span class="preprocessor">@IBInspectable</span> <span class="keyword">var</span> cornerRadius: <span class="type">CGFloat</span> &#123;</span><br><span class="line">        <span class="keyword">get</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> layer.cornerRadius</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">set</span> &#123;</span><br><span class="line">            layer.cornerRadius = newValue</span><br><span class="line">            layer.masksToBounds = newValue &gt; <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>内置的 Cocoa 类型如果在 Interface Builder 中的属性检查器中没有列出也可以通过扩展来使属性可视。如果你喜欢圆角，你一定会喜欢这个 UIView 扩展：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Swift</span><br><span class="line">extension UIView &#123;</span><br><span class="line">    @IBInspectable var cornerRadius: CGFloat &#123;</span><br><span class="line">        get &#123;</span><br><span class="line">            return layer.cornerRadius</span><br><span class="line">        &#125;</span><br><span class="line">        set &#123;</span><br><span class="line">            layer.cornerRadius = newValue</span><br><span class="line">            layer.masksToBounds = newValue &gt; 0</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>变！你创建的任何 UIView 都将有一个可配置的边界半径。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/" data-id="cifxfz67m0004b7s5zkr8xget" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/" data-id="cjf1zsfmm000f5hs5fmfjaiyi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IBDesignable-IBInspectable/">IBDesignable &  IBInspectable'</a></li></ul>
@@ -191,7 +189,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br>
+        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/" target="_blank" rel="noopener">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br>
         
           <p class="article-more-link">
             <a href="/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/#more">Read More</a>
@@ -200,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cifxfz67o0007b7s5h9ltyx4u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cjf1zsfmk000c5hs5jyt1tsgc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -233,12 +231,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>生命之氢 Blog <a href="http://shengmingzhiqing.com/blog/octopress-tutorials-toc.html/" target="_blank" rel="external">《Octopress 教程目录》</a></p>
+        <p>生命之氢 Blog <a href="http://shengmingzhiqing.com/blog/octopress-tutorials-toc.html/" target="_blank" rel="noopener">《Octopress 教程目录》</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/23/octopress-xie-wen-zhang/" data-id="cifxfz67p0008b7s5954p0sdp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/04/23/octopress-xie-wen-zhang/" data-id="cjf1zsfmg00085hs53ds2pd2k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,7 +273,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文地址：<a href="http://martiancraft.com/blog/2014/09/vector-images-xcode6/">http://martiancraft.com/blog/2014/09/vector-images-xcode6/</a><br><br><br><img src="/images/using_vector_image_xcode_1.png" alt="sing_vector_image_xcode_1"><br>
+        <p>原文地址：<a href="http://martiancraft.com/blog/2014/09/vector-images-xcode6/" target="_blank" rel="noopener">http://martiancraft.com/blog/2014/09/vector-images-xcode6/</a><br><br><br><img src="/images/using_vector_image_xcode_1.png" alt="sing_vector_image_xcode_1"><br>
         
           <p class="article-more-link">
             <a href="/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/#more">Read More</a>
@@ -284,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/" data-id="cifxfz67q0009b7s5v08fxd3d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/" data-id="cjf1zsfmi000b5hs5q2rhnn07" class="article-share-link">Share</a>
       
       
     </footer>
@@ -334,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" data-id="cifxfz67s000cb7s5c8hky5a2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" data-id="cjf1zsfmf00075hs5ab9vcghx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -385,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" data-id="cifxfz67t000eb7s5k1k6d6ij" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" data-id="cjf1zsfmc00045hs5na3qv82k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -423,16 +421,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>学习自：</p>
-<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md">nixzhu 翻译的关于GCD的文章1</a></p>
-<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-05-14-grand-central-dispatch-in-depth-part-2.md">nixzhu 翻译的关于GCD的文章2</a></p>
-<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1">官方文档</a>。<br><br ></p>
+<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-04-19-grand-central-dispatch-in-depth-part-1.md" target="_blank" rel="noopener">nixzhu 翻译的关于GCD的文章1</a></p>
+<p><a href="https://github.com/nixzhu/dev-blog/blob/master/2014-05-14-grand-central-dispatch-in-depth-part-2.md" target="_blank" rel="noopener">nixzhu 翻译的关于GCD的文章2</a></p>
+<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="noopener">官方文档</a>。<br><br></p>
 <h3 id="特性">特性</h3><ul>
 <li>基于队列工作 dispatch queue，严格按照FIFO（first in first out）</li>
 <li>平行排队特定任务</li>
 <li>利用任何可用核心资源（多核处理器）处理任务</li>
 <li>任务：函数（function）、block</li>
 </ul>
-<p><br ><br>
+<p><br><br>
         
           <p class="article-more-link">
             <a href="/2014/07/21/grand-central-dispath-gcd-xue-xi/#more">Read More</a>
@@ -441,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/" data-id="cifxfz67v000gb7s59ktr8phn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/" data-id="cjf1zsfmd00055hs5sv41r3i3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -478,10 +476,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="简介：">简介：</h4><p>iOS（原名：iPhone OS）是由苹果公司为移动设备所开发的操作系统，支持的设备包括iPhone、iPod touch、iPad、Apple TV。与Android及Windows Phone不同，iOS不支持非苹果硬件的设备。系统操作（iOS 7）占用约700-900MB左右的储存空间(其中iPhone、iPod touch占约700MB，iPad占约900MB）。目前，iOS的最新版本为8.0 beta。<br><br ></p>
+        <h4 id="简介：">简介：</h4><p>iOS（原名：iPhone OS）是由苹果公司为移动设备所开发的操作系统，支持的设备包括iPhone、iPod touch、iPad、Apple TV。与Android及Windows Phone不同，iOS不支持非苹果硬件的设备。系统操作（iOS 7）占用约700-900MB左右的储存空间(其中iPhone、iPod touch占约700MB，iPad占约900MB）。目前，iOS的最新版本为8.0 beta。<br><br></p>
 <h4 id="系统架构">系统架构</h4><ul>
 <li>框架：iOS使用基于与苹果麦金塔计算器不同的ARM架构的64位或32位中央处理器，使用由PowerVR视频卡渲染的OpenGL ES 3.0以Darwin作为基础[8][9]。</li>
-<li>系统架构层次：核心操作系统层（the Core OS layer），核心服务层（the Core Services layer），媒体层（the Media layer），触控应用层（the Cocoa Touch layer）<br><br ></li>
+<li>系统架构层次：核心操作系统层（the Core OS layer），核心服务层（the Core Services layer），媒体层（the Media layer），触控应用层（the Cocoa Touch layer）<br><br></li>
 </ul>
 <p>其实以上的资料都可以在网上找到的，就不摘录了，直接点，想进入iOS开发的世界，可以
         
@@ -492,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/18/chu-shi-ios/" data-id="cifxfz67y000ib7s5smohw4ss" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/18/chu-shi-ios/" data-id="cjf1zsfm600015hs5lowh1c0q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -533,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/" data-id="cifxfz6730000b7s5ybegzpwf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/" data-id="cjf1zsfm200005hs5yxo89oj0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -627,7 +625,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Kelvin<br>
+      &copy; 2018 Kelvin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -647,11 +645,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

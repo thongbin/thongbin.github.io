@@ -11,12 +11,14 @@
 <meta property="og:url" content="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
 <meta property="og:description" content="最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearch">
+<meta property="og:locale" content="Simplified Chinese">
 <meta property="og:image" content="http://yoursite.com/images/searchDisplayController_1.png">
 <meta property="og:image" content="http://yoursite.com/images/searchDisplayController_2.png">
 <meta property="og:updated_time" content="2014-09-22T02:37:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现UISearchDisplayController 默认显示初始数据UITableView效果">
 <meta name="twitter:description" content="最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearch">
+<meta name="twitter:image" content="http://yoursite.com/images/searchDisplayController_1.png">
   
     <link rel="alternative" href="/atom.xml" title="Kelvin Tong" type="application/atom+xml">
   
@@ -24,7 +26,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -62,7 +64,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -104,7 +106,7 @@
 <li><p>实现这个效果，很多人首先会进入一个误区，就是会想着进来一显示的那个UITablView就是UISearchDisplayController的searchResultTableView，其实不然，只要思维走出这误区，接下来的事情就很容易了。<br>事实上，我是另外新建了一个UITableView作为searchRecordTableView，在激活搜索之后，默认显示搜索记录，当用户开始搜索，隐藏搜索历史记录列表，让searchResultTableView显示出来，这就是基本思路，说得挺简单，实现起来也简单，只是有几个地方要注意：<br><br></p>
 </li>
 <li><p>searchRecordTableView要添加到 controller.searchContentsController.view 的 subviews</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)searchDisplayControllerDidBeginSearch:(<span class="built_in">UISearchDisplayController</span> *)controller</span><br><span class="line">&#123;</span><br><span class="line">    [controller<span class="variable">.searchContentsController</span><span class="variable">.view</span> addSubview:_recordTableView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)searchBar:(<span class="built_in">UISearchBar</span> *)searchBar textDidChange:(<span class="built_in">NSString</span> *)searchText</span><br><span class="line">&#123;</span><br><span class="line">    _searchText = searchText;</span><br><span class="line">    <span class="keyword">if</span> ([searchText length] &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">        [_recordTableView removeFromSuperview];</span><br><span class="line">        <span class="preprocessor">#warning 请求搜索补全</span></span><br><span class="line">        </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [_recordTableView reloadData];</span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.searchDisplayController</span><span class="variable">.searchContentsController</span><span class="variable">.view</span> addSubview:_recordTableView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)searchDisplayControllerDidBeginSearch:(<span class="built_in">UISearchDisplayController</span> *)controller</span><br><span class="line">&#123;</span><br><span class="line">    [controller.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)searchBar:(<span class="built_in">UISearchBar</span> *)searchBar textDidChange:(<span class="built_in">NSString</span> *)searchText</span><br><span class="line">&#123;</span><br><span class="line">    _searchText = searchText;</span><br><span class="line">    <span class="keyword">if</span> ([searchText length] &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">        [_recordTableView removeFromSuperview];</span><br><span class="line">        <span class="meta">#warning 请求搜索补全</span></span><br><span class="line">        </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [_recordTableView reloadData];</span><br><span class="line">        [<span class="keyword">self</span>.searchDisplayController.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
@@ -114,13 +116,13 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_recordTableView = [[<span class="built_in">UITableView</span> alloc]initWithFrame:<span class="string">"基于searchBar的frame来控制"</span> style:<span class="built_in">UITableViewStylePlain</span>];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>两个UITableView可以使用同一个UITablViewDelegate,UITableViewDataSource，只要在具体函数里面做做处理。</li>
-<li>具体代码:    <a href="https://github.com/thongbin/TBSearchViewController" target="_blank" rel="external">Github</a></li>
+<li>具体代码:    <a href="https://github.com/thongbin/TBSearchViewController" target="_blank" rel="noopener">Github</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" data-id="cifxfz67s000cb7s5c8hky5a2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" data-id="cjf1zsfmf00075hs5ab9vcghx" class="article-share-link">Share</a>
       
         <section id="comments">
           <!-- 多说评论框 start -->
@@ -247,7 +249,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Kelvin<br>
+      &copy; 2018 Kelvin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -267,11 +269,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>

@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
 <meta property="og:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
+<meta property="og:locale" content="Simplified Chinese">
 <meta property="og:updated_time" content="2015-08-20T19:57:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转载]主题更换设计思路">
@@ -22,7 +23,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 
 </head>
@@ -60,7 +61,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -88,14 +89,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/" target="_blank" rel="external">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
+        <h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/" target="_blank" rel="noopener">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
 <p>资源按主题放置：相同功能的资源名称相同，放在不同的主题路径或者前缀使用主题名。<br>增加中间层，隔离不同主题相同功能资源使用的变化。</p>
 <h5 id="1-_主题管理">1. 主题管理</h5><p>主题的特性导致代码不关心资源的表现是什么，只关心资源的功能，而主题是易变化的，因此需要将易变化的部分抽离出来，整合到一个管理者中，主题的变化在管理者中完成，而不影响资源使用的地方。而且这个管理者是全局唯一的，因此使用单例。</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ <span class="list">(<span class="keyword">ThemeManager</span> <span class="variable">*)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    static ThemeManager *</span>sharedInstance = <span class="literal">nil</span><span class="comment">;</span></span><br><span class="line">    if <span class="list">(<span class="keyword">sharedInstance</span> == <span class="literal">nil</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        sharedInstance = [[ThemeManager alloc] init]<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">    return sharedInstance<span class="comment">;</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ (ThemeManager *)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    static ThemeManager *sharedInstance = nil;</span><br><span class="line">    if (sharedInstance == nil)</span><br><span class="line">    &#123;</span><br><span class="line">        sharedInstance = [[ThemeManager alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    return sharedInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>主题中的资源使用plist进行存储，颜色的RGBA值跟字体的信息可以直接存入plist，而图片则可以存入图片的位置。按主题命名plist文件，ThemeManager的初始化跟主题更换就从main bundle中按主题名字读取对应的plist文件。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</span><br><span class="line">        <span class="built_in">NSString</span> *themeName = [defaults objectForKey:<span class="string">@"theme"</span>] ?: <span class="string">@"default"</span>;</span><br><span class="line">                                            </span><br><span class="line">        <span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:themeName ofType:<span class="string">@"plist"</span>];</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.theme</span> = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:path];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (id)init</span><br><span class="line">&#123;</span><br><span class="line">    if (self = [super init])</span><br><span class="line">    &#123;</span><br><span class="line">        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];</span><br><span class="line">        NSString *themeName = [defaults objectForKey:@&quot;theme&quot;] ?: @&quot;default&quot;;</span><br><span class="line">                                            </span><br><span class="line">        NSString *path = [[NSBundle mainBundle] pathForResource:themeName ofType:@&quot;plist&quot;];</span><br><span class="line">        self.theme = [NSDictionary dictionaryWithContentsOfFile:path];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码中不再是直接使用主题相关的资源，而是通过ThemeManager得到对应主题下的资源。</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接使用资源：</span></span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"xxx_btn_background"</span>];</span><br><span class="line"><span class="comment">// 通过主题管理器使用资源：</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *theme = [ThemeManager sharedInstance]<span class="variable">.theme</span>;</span><br><span class="line"><span class="built_in">NSString</span> *imageName = [theme objectForKey:<span class="string">@"xxx_btn_background"</span>];</span><br><span class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:imageName];</span><br><span class="line">上面的代码在使用时还是有些复杂，代码只关心资源的功能，不关系也不应该关心取资源的细节，因此应在ThemeManager对取资源进行如下封装：</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">UIImage</span> *)imageForKey:(<span class="built_in">NSString</span> *)key;</span><br><span class="line">在使用主题中的资源时，代码就变成了：</span><br><span class="line"></span><br><span class="line"><span class="built_in">UIImage</span> *image = [[ThemeManager sharedInstance] imageForKey:<span class="string">@"xxx_btn_background"</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 直接使用资源：</span><br><span class="line">UIImage *image = [UIImage imageNamed:@&quot;xxx_btn_background&quot;];</span><br><span class="line">// 通过主题管理器使用资源：</span><br><span class="line">NSDictionary *theme = [ThemeManager sharedInstance].theme;</span><br><span class="line">NSString *imageName = [theme objectForKey:@&quot;xxx_btn_background&quot;];</span><br><span class="line">UIImage *image = [UIImage imageNamed:imageName];</span><br><span class="line">上面的代码在使用时还是有些复杂，代码只关心资源的功能，不关系也不应该关心取资源的细节，因此应在ThemeManager对取资源进行如下封装：</span><br><span class="line"></span><br><span class="line">- (UIImage *)imageForKey:(NSString *)key;</span><br><span class="line">在使用主题中的资源时，代码就变成了：</span><br><span class="line"></span><br><span class="line">UIImage *image = [[ThemeManager sharedInstance] imageForKey:@&quot;xxx_btn_background&quot;];</span><br></pre></td></tr></table></figure>
 <h5 id="2-_资源的放置">2. 资源的放置</h5><p>当系统将主题相关的资源文件部署到ios设备中时，在默认情况下，系统会将所有的资源plat平铺拷贝到mainBundle目录下，即使你的资源是按文件夹来组织的。（我们可以在模拟器中查看Bundle的情况，模拟器的路径是：~/Library/Application Support/iPhone Simulator）</p>
 <p>因此，在将资源文件加入到工程时，不要选默认的”Recursively create groups for any add folders”，要选择“Create Folder Reference for any add folders”，这样才能保证资源文件按照原有文件夹的组织格式被拷贝到mainBundle中。</p>
 <p>关于上述的两个选项，就涉及到Xcode的Group（黄色）跟Folder Reference（蓝色）的概念了，参见从别处摘抄来的理解：</p>
@@ -105,12 +106,12 @@
 <h5 id="4-_总结">4. 总结</h5><p>其实主题的设计思路跟类簇很像，例如对于NSNumber，不同类型的数据其实真正返回的是NSNumber相对于此类型的子类，但是对于NSNumber的使用者而言，其并不关心NSNumber返回的具体子类是什么，只要满足NSNumber定义的接口就行。设计总是类似的，针对易变化的部分，增加一个中间层（接口）将易变化的部分封装起来，提供给使用者稳定不易变的服务。</p>
 <p>总之，OOP跟DesignPattern在我看来主要做了两件事：</p>
 <p>隔离变化<br><br>封装细节</p>
-<h5 id="参考">参考</h5><p><a href="http://twinlogix.com/en/blog/how-create-multiple-themes-ios-apps" target="_blank" rel="external">HOW TO CREATE MULTIPLE THEMES FOR IOS APPS</a><br><a href="http://blog.csdn.net/yanghua_kobe/article/details/9555575" target="_blank" rel="external">iOS开发之主题皮肤</a><br><a href="https://github.com/rnystrom/RNThemeManager" target="_blank" rel="external">RNThemeManager</a></p>
+<h5 id="参考">参考</h5><p><a href="http://twinlogix.com/en/blog/how-create-multiple-themes-ios-apps" target="_blank" rel="noopener">HOW TO CREATE MULTIPLE THEMES FOR IOS APPS</a><br><a href="http://blog.csdn.net/yanghua_kobe/article/details/9555575" target="_blank" rel="noopener">iOS开发之主题皮肤</a><br><a href="https://github.com/rnystrom/RNThemeManager" target="_blank" rel="noopener">RNThemeManager</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cifxfz67o0007b7s5h9ltyx4u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/" data-id="cjf1zsfmk000c5hs5jyt1tsgc" class="article-share-link">Share</a>
       
         <section id="comments">
           <!-- 多说评论框 start -->
@@ -237,7 +238,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Kelvin<br>
+      &copy; 2018 Kelvin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -257,11 +258,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
   </div>
 </body>
