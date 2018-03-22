@@ -4,7 +4,7 @@
   <subtitle><![CDATA[iOS Developer, S.H.S.F.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-10-19T04:30:54.000Z</updated>
+  <updated>2018-03-22T07:22:30.364Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,10 +19,10 @@
     <link href="http://yoursite.com/2015/10/19/gitignorefile/"/>
     <id>http://yoursite.com/2015/10/19/gitignorefile/</id>
     <published>2015-10-19T04:25:24.000Z</published>
-    <updated>2015-10-19T04:30:54.000Z</updated>
-    <content type="html"><![CDATA[<p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></p>
-<p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
+    <updated>2018-03-22T07:22:30.364Z</updated>
+    <content type="html"><![CDATA[<h5 id="摘录_让_GIT_全局性的忽略_-DS_STORE">摘录 <a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></h5><p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
 <p>Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文件吗？</p>
+<a id="more"></a>
 <p>按照以下两步就可实现</p>
 <p>创建 ==~/.gitignore_global== 文件，把需要全局忽略的文件类型塞到这个文件里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># .gitignore_global</span><br><span class="line">####################################</span><br><span class="line">######## OS generated files ########</span><br><span class="line">####################################</span><br><span class="line">.DS_Store</span><br><span class="line">.DS_Store?</span><br><span class="line">*.swp</span><br><span class="line">._*</span><br><span class="line">.Spotlight-V100</span><br><span class="line">.Trashes</span><br><span class="line">Icon?</span><br><span class="line">ehthumbs.db</span><br><span class="line">Thumbs.db</span><br><span class="line">####################################</span><br><span class="line">############# Packages #############</span><br><span class="line">####################################</span><br><span class="line">*.7z</span><br><span class="line">*.dmg</span><br><span class="line">*.gz</span><br><span class="line">*.iso</span><br><span class="line">*.jar</span><br><span class="line">*.rar</span><br><span class="line">*.tar</span><br><span class="line">*.zip</span><br></pre></td></tr></table></figure></p>
 <p>2.在 ~/.gitconfig 中引入 .gitignore_global。<br>这是我的.gitconfig 文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[user]</span><br><span class="line">    name = xiaoronglv</span><br><span class="line">    email = xxxxx@gmail.com</span><br><span class="line">[push]</span><br><span class="line">    default = matching</span><br><span class="line">[core]</span><br><span class="line">    excludesfile = /Users/xiaoronglv/.gitignore_global</span><br></pre></td></tr></table></figure></p>
@@ -32,8 +32,9 @@
 <p><a href="https://help.github.com/articles/ignoring-files/" target="_blank" rel="noopener">Github: Create a global .gitignore</a><br><a href="http://osxdaily.com/2009/12/31/what-is-a-ds_store-file/" target="_blank" rel="noopener">What is .DS_Store file?</a><br><a href="http://stackoverflow.com/questions/18393498/gitignore-all-the-ds-store-files-in-every-folder-and-subfolder" target="_blank" rel="noopener">.gitignore all the .DS_Store files in every folder and subfolder</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>######摘录<a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></p>
-<p>在Mac 的文件夹下，系]]>
+    <![CDATA[<h5 id="摘录_让_GIT_全局性的忽略_-DS_STORE">摘录 <a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></h5><p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
+<p>Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文件吗？</p>]]>
+    
     </summary>
     
   </entry>
@@ -43,8 +44,9 @@
     <link href="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/"/>
     <id>http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/</id>
     <published>2015-09-22T03:03:09.000Z</published>
-    <updated>2015-09-25T07:05:20.000Z</updated>
+    <updated>2018-03-22T07:23:14.916Z</updated>
     <content type="html"><![CDATA[<p>Xcode6开始，Apple提供给开发者两个很给力的宏（在Objective－C是宏，在Swift里是关键字）</p>
+<a id="more"></a>
 <p>#@IBDesignable<br>顾名思义，从命名上就能看出这个是跟UI开发有关的，自定义视图的时候，当应用到 UIView 或 NSView 子类中的时候，@ IBDesignable 让 Interface Builder 知道它应该在画布上直接渲染视图。你会看到你的自定义视图在每次更改后不必编译并运行你的应用程序就会显示。</p>
 <p>标记一个自定义视图为 IBDesignable，只需在类名前加上 @IBDesignable 的前缀（或是 Objective-C 里的 IB_DESIGNABLE 宏）。你的初始化、布置和绘制方法将被用来在画布上渲染你的自定义视图：</p>
 <p>#@IBInspectable</p>
@@ -62,8 +64,8 @@
 <p>变！你创建的任何 UIView 都将有一个可配置的边界半径。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Xcode6开始，Apple提供给开发者两个很给力的宏（在Objective－C是宏，在Swift里是关键字）</p>
-<p>#@IBDesignable<br>顾名思义，从命名上就能看出这个是跟UI开发有关的，自定义视图的时候，当应用到 UIView 或 NSView 子]]>
+    <![CDATA[<p>Xcode6开始，Apple提供给开发者两个很给力的宏（在Objective－C是宏，在Swift里是关键字）</p>]]>
+    
     </summary>
     
       <category term="IBDesignable &amp;  IBInspectable&#39;" scheme="http://yoursite.com/tags/IBDesignable-IBInspectable/"/>
@@ -179,13 +181,14 @@
     <link href="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/"/>
     <id>http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/</id>
     <published>2014-09-20T19:12:51.000Z</published>
-    <updated>2014-09-22T02:37:26.000Z</updated>
-    <content type="html"><![CDATA[<p>最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearchBar没输入任何内容之前是不显示的。</p>
+    <updated>2018-03-22T06:46:55.522Z</updated>
+    <content type="html"><![CDATA[<p>####实现UISearchDisplayController 默认显示初始数据UITableView效果</p>
+<a id="more"></a>
+<p>最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearchBar没输入任何内容之前是不显示的。</p>
 <ul>
 <li>先看效果：</li>
 </ul>
 <p><img src="/images/searchDisplayController_1.png" alt="searchDisplayController_1"> <img src="/images/searchDisplayController_2.png" alt="searchDisplayController_2"></p>
-<a id="more"></a>
 <ul>
 <li><p>实现这个效果，很多人首先会进入一个误区，就是会想着进来一显示的那个UITablView就是UISearchDisplayController的searchResultTableView，其实不然，只要思维走出这误区，接下来的事情就很容易了。<br>事实上，我是另外新建了一个UITableView作为searchRecordTableView，在激活搜索之后，默认显示搜索记录，当用户开始搜索，隐藏搜索历史记录列表，让searchResultTableView显示出来，这就是基本思路，说得挺简单，实现起来也简单，只是有几个地方要注意：<br><br></p>
 </li>
@@ -204,11 +207,7 @@
 </ul>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearchBar没输入任何内容之前是不显示的。</p>
-<ul>
-<li>先看效果：</li>
-</ul>
-<p><img src="/images/searchDisplayController_1.png" alt="searchDisplayController_1"> <img src="/images/searchDisplayController_2.png" alt="searchDisplayController_2"></p>]]>
+    <![CDATA[<p>####实现UISearchDisplayController 默认显示初始数据UITableView效果</p>]]>
     
     </summary>
     
