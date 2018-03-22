@@ -101,7 +101,7 @@
 <meta name="description" content="摘录 让 GIT 全局性的忽略 .DS_STORE在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件 Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 全局忽略 不需要的版本跟踪的文件">
-<meta property="og:url" content="http://yoursite.com/2015/10/19/gitignorefile/index.html">
+<meta property="og:url" content="http://tanghongbin.me/2015/10/19/gitignorefile/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
 <meta property="og:description" content="摘录 让 GIT 全局性的忽略 .DS_STORE在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件 Mac 中每个目录都会有个文件叫.DS_Store, 用于存储当前文件夹的一些 Meta 信息。每次提交代码时，我都要在代码仓库的 .gitignore 中声明，忽略这类文件。有方法可以全局性的忽略某种类型的文">
 <meta property="og:locale" content="zh-Hans">
@@ -137,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2015/10/19/gitignorefile/"/>
+  <link rel="canonical" href="http://tanghongbin.me/2015/10/19/gitignorefile/"/>
 
 
 
@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/10/19/gitignorefile/">
+    <link itemprop="mainEntityOfPage" href="http://tanghongbin.me/2015/10/19/gitignorefile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kelvin">
@@ -308,6 +308,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/10/19/gitignorefile/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/10/19/gitignorefile/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -404,6 +415,13 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -652,14 +670,23 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://kelvintong.disqus.com/count.js" async></script>
+    
 
-
-
-	
-
-
-
-
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tanghongbin.me/2015/10/19/gitignorefile/';
+          this.page.identifier = '2015/10/19/gitignorefile/';
+          this.page.title = 'Git 全局忽略 不需要的版本跟踪的文件';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kelvintong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
 
   
 
@@ -667,7 +694,6 @@
 
 
 
-  
 
 
 

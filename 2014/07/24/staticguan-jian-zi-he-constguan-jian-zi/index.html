@@ -99,7 +99,7 @@
 <meta name="description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下 static直接说它的作用可能会更直观，使用static关键字修饰的变量：  称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。 只会初始化一次 适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。  const 常量，初始化了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="static关键字和const关键字">
-<meta property="og:url" content="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/index.html">
+<meta property="og:url" content="http://tanghongbin.me/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
 <meta property="og:description" content="这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下 static直接说它的作用可能会更直观，使用static关键字修饰的变量：  称为静态变量，当你是在程序开始时就创建了它，那么它整个生命周期是从程序开始到结束，也就说在程序结束之前，会一直占着内存，系统不会释放。 只会初始化一次 适用于只需初始化一次的变量，例如记录页面的访问次数、操作次数等。  const 常量，初始化了">
 <meta property="og:locale" content="zh-Hans">
@@ -135,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/"/>
+  <link rel="canonical" href="http://tanghongbin.me/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/"/>
 
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/">
+    <link itemprop="mainEntityOfPage" href="http://tanghongbin.me/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kelvin">
@@ -328,6 +328,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -428,6 +439,13 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -676,14 +694,23 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://kelvintong.disqus.com/count.js" async></script>
+    
 
-
-
-	
-
-
-
-
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tanghongbin.me/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/';
+          this.page.identifier = '2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/';
+          this.page.title = 'static关键字和const关键字';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kelvintong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
 
   
 
@@ -691,7 +718,6 @@
 
 
 
-  
 
 
 

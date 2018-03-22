@@ -99,7 +99,7 @@
 <meta name="description" content="学习自： nixzhu 翻译的关于GCD的文章1 nixzhu 翻译的关于GCD的文章2 Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。 特性 基于队列工作 dispatch queue，严格按照FIFO（first in first out） 平行排队特定任务 利用任何可用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grand Central Dispatch(GCD)学习">
-<meta property="og:url" content="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/index.html">
+<meta property="og:url" content="http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/index.html">
 <meta property="og:site_name" content="Kelvin Tong">
 <meta property="og:description" content="学习自： nixzhu 翻译的关于GCD的文章1 nixzhu 翻译的关于GCD的文章2 Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考官方文档。 特性 基于队列工作 dispatch queue，严格按照FIFO（first in first out） 平行排队特定任务 利用任何可用">
 <meta property="og:locale" content="zh-Hans">
@@ -135,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/"/>
+  <link rel="canonical" href="http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/"/>
 
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/">
+    <link itemprop="mainEntityOfPage" href="http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kelvin">
@@ -328,6 +328,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/07/21/grand-central-dispath-gcd-xue-xi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/07/21/grand-central-dispath-gcd-xue-xi/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -481,6 +492,13 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     
   </div>
 
@@ -729,14 +747,23 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://kelvintong.disqus.com/count.js" async></script>
+    
 
-
-
-	
-
-
-
-
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/';
+          this.page.identifier = '2014/07/21/grand-central-dispath-gcd-xue-xi/';
+          this.page.title = 'Grand Central Dispatch(GCD)学习';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kelvintong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
 
   
 
@@ -744,7 +771,6 @@
 
 
 
-  
 
 
 

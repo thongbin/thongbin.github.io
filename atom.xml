@@ -3,9 +3,9 @@
   <title><![CDATA[Kelvin Tong]]></title>
   <subtitle><![CDATA[iOS Developer, S.H.S.F.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
+  <link href="http://tanghongbin.me/"/>
   <updated>2018-03-22T07:22:30.364Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://tanghongbin.me/</id>
   
   <author>
     <name><![CDATA[Kelvin]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[Git 全局忽略 不需要的版本跟踪的文件]]></title>
-    <link href="http://yoursite.com/2015/10/19/gitignorefile/"/>
-    <id>http://yoursite.com/2015/10/19/gitignorefile/</id>
+    <link href="http://tanghongbin.me/2015/10/19/gitignorefile/"/>
+    <id>http://tanghongbin.me/2015/10/19/gitignorefile/</id>
     <published>2015-10-19T04:25:24.000Z</published>
     <updated>2018-03-22T07:22:30.364Z</updated>
     <content type="html"><![CDATA[<h5 id="摘录_让_GIT_全局性的忽略_-DS_STORE">摘录 <a href="http://mednoter.com/gitignore-global.html" target="_blank" rel="noopener">让 GIT 全局性的忽略 .DS_STORE</a></h5><p>在Mac 的文件夹下，系统会生成.DS_Store文件，具体什么作用暂时不需要关心，若果在同时又是Git仓库的文件夹下，强烈建议忽略此文件</p>
@@ -41,8 +41,8 @@
   
   <entry>
     <title><![CDATA[IBDesignable &  IBInspectable]]></title>
-    <link href="http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/"/>
-    <id>http://yoursite.com/2015/09/22/IBDesignable-IBInspectable/</id>
+    <link href="http://tanghongbin.me/2015/09/22/IBDesignable-IBInspectable/"/>
+    <id>http://tanghongbin.me/2015/09/22/IBDesignable-IBInspectable/</id>
     <published>2015-09-22T03:03:09.000Z</published>
     <updated>2018-03-22T07:23:14.916Z</updated>
     <content type="html"><![CDATA[<p>Xcode6开始，Apple提供给开发者两个很给力的宏（在Objective－C是宏，在Swift里是关键字）</p>
@@ -68,14 +68,14 @@
     
     </summary>
     
-      <category term="IBDesignable &amp;  IBInspectable&#39;" scheme="http://yoursite.com/tags/IBDesignable-IBInspectable/"/>
+      <category term="IBDesignable &amp;  IBInspectable&#39;" scheme="http://tanghongbin.me/tags/IBDesignable-IBInspectable/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[[转载]主题更换设计思路]]></title>
-    <link href="http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/"/>
-    <id>http://yoursite.com/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/</id>
+    <link href="http://tanghongbin.me/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/"/>
+    <id>http://tanghongbin.me/2015/08/20/zhu-ti-geng-huan-she-ji-si-lu/</id>
     <published>2015-08-20T10:17:41.000Z</published>
     <updated>2015-08-20T19:57:40.000Z</updated>
     <content type="html"><![CDATA[<h4 id="原出处：传人的技术博客">原出处：<a href="http://joeshang.github.io/2014/12/22/theme-change-architecture/" target="_blank" rel="noopener">传人的技术博客</a></h4><p>现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。<br><a id="more"></a><br>如何在iOS中实现主题更换的核心思路为：</p>
@@ -106,8 +106,8 @@
   
   <entry>
     <title><![CDATA[octopress 写文章]]></title>
-    <link href="http://yoursite.com/2015/04/23/octopress-xie-wen-zhang/"/>
-    <id>http://yoursite.com/2015/04/23/octopress-xie-wen-zhang/</id>
+    <link href="http://tanghongbin.me/2015/04/23/octopress-xie-wen-zhang/"/>
+    <id>http://tanghongbin.me/2015/04/23/octopress-xie-wen-zhang/</id>
     <published>2015-04-23T09:39:54.000Z</published>
     <updated>2015-07-26T12:00:50.000Z</updated>
     <content type="html"><![CDATA[<p>生命之氢 Blog <a href="http://shengmingzhiqing.com/blog/octopress-tutorials-toc.html/" target="_blank" rel="noopener">《Octopress 教程目录》</a></p>
@@ -120,8 +120,8 @@
   
   <entry>
     <title><![CDATA[在Xcode6里使用矢量图-译]]></title>
-    <link href="http://yoursite.com/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/"/>
-    <id>http://yoursite.com/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/</id>
+    <link href="http://tanghongbin.me/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/"/>
+    <id>http://tanghongbin.me/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/</id>
     <published>2014-09-22T13:03:08.000Z</published>
     <updated>2014-09-22T14:06:45.000Z</updated>
     <content type="html"><![CDATA[<p>原文地址：<a href="http://martiancraft.com/blog/2014/09/vector-images-xcode6/" target="_blank" rel="noopener">http://martiancraft.com/blog/2014/09/vector-images-xcode6/</a><br><br><br><img src="/images/using_vector_image_xcode_1.png" alt="sing_vector_image_xcode_1"><br><a id="more"></a><br><br><br>iOS applications are an image-driven species. When developing an app, you need icons in various sizes, Default.png images in different sizes, and also @1x and @2x images for each image file inside the app. All of these images make applications look attractive, but the downside is you have to generate these image files individually. With the introduction of the iPhone 6 and 6 Plus last week, I couldn’t help but think how difficult it will be to manage yet another group of assets: @3x assets.<br><br><br>iOS应用是一种图片驱动类型的应用。当开发一款应用的时候，在整个应用里面，你需要各种各样尺寸的icons，不同尺寸的Default.png，以及每一张图片都需要@1x，@2x两个版本。所有的这些图片令到你的应用看起来很吸引人，但不足之处在于你必须分别生成这些图片。随着上周对iPhone6、iPhone6 plus的介绍，我不由地觉得管理另一个图片资源：@3x会是多么的困难。<br><br><br>Fortunately, Apple has provided some great tools in Xcode 6 for managing assets. Even better, this a way to prepare your apps for future iOS devices. One piece of this is the ability to generate Storyboard-based Launch Images in Xcode 6 and iOS 8, leaving behind the notion of individual images for each device type. Another piece of this technology is the ability to generate vector-based images from a PDF at build-time in Xcode 6. In this article, I want to delve into how you can do the latter, saving yourself time (and your sanity) in the process.<br><br><br>幸运的是，Apple在Xcode6 里面提供了一些很强大的工具去管理这些资源，更妙的是，对于未来的iOS设备，这是为你的应用做准备的一种方式。一个是生成Storyboard-based Launch Images，另一个是基于矢量图的PDF文件生成矢量图片，在这篇文章里，我打算深入去研究你需要怎样做到这个，去节省自己的精力。</p>
@@ -172,14 +172,14 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[实现UISearchDisplayController 默认显示初始数据UITableView效果]]></title>
-    <link href="http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/"/>
-    <id>http://yoursite.com/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/</id>
+    <link href="http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/"/>
+    <id>http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/</id>
     <published>2014-09-20T19:12:51.000Z</published>
     <updated>2018-03-22T06:46:55.522Z</updated>
     <content type="html"><![CDATA[<p>####实现UISearchDisplayController 默认显示初始数据UITableView效果</p>
@@ -211,14 +211,14 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[static关键字和const关键字]]></title>
-    <link href="http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/"/>
-    <id>http://yoursite.com/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/</id>
+    <link href="http://tanghongbin.me/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/"/>
+    <id>http://tanghongbin.me/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/</id>
     <published>2014-07-24T02:04:52.000Z</published>
     <updated>2015-08-20T19:38:45.000Z</updated>
     <content type="html"><![CDATA[<p>这两个关键字平时可能用得比较多，但有时还是会记不住他们的用法，特此记录一下</p>
@@ -239,14 +239,14 @@
 <li>称为静态变量，当你是在程序开始时就创建了]]>
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Grand Central Dispatch(GCD)学习]]></title>
-    <link href="http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/"/>
-    <id>http://yoursite.com/2014/07/21/grand-central-dispath-gcd-xue-xi/</id>
+    <link href="http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/"/>
+    <id>http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/</id>
     <published>2014-07-21T06:18:09.000Z</published>
     <updated>2015-08-20T19:38:15.000Z</updated>
     <content type="html"><![CDATA[<p>学习自：</p>
@@ -328,14 +328,14 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[初识iOS]]></title>
-    <link href="http://yoursite.com/2014/07/18/chu-shi-ios/"/>
-    <id>http://yoursite.com/2014/07/18/chu-shi-ios/</id>
+    <link href="http://tanghongbin.me/2014/07/18/chu-shi-ios/"/>
+    <id>http://tanghongbin.me/2014/07/18/chu-shi-ios/</id>
     <published>2014-07-18T06:31:59.000Z</published>
     <updated>2015-08-20T19:37:42.000Z</updated>
     <content type="html"><![CDATA[<h4 id="简介：">简介：</h4><p>iOS（原名：iPhone OS）是由苹果公司为移动设备所开发的操作系统，支持的设备包括iPhone、iPod touch、iPad、Apple TV。与Android及Windows Phone不同，iOS不支持非苹果硬件的设备。系统操作（iOS 7）占用约700-900MB左右的储存空间(其中iPhone、iPod touch占约700MB，iPad占约900MB）。目前，iOS的最新版本为8.0 beta。<br><br></p>
@@ -361,14 +361,14 @@
     
     </summary>
     
-      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[基于Octopress 同时在 Github&amp;Gitcafe 上构建blog ]]></title>
-    <link href="http://yoursite.com/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/"/>
-    <id>http://yoursite.com/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/</id>
+    <link href="http://tanghongbin.me/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/"/>
+    <id>http://tanghongbin.me/2014/07/17/ji-yu-octopress-tong-shi-zai-github-and-gitcafe-shang-gou-jian-blog/</id>
     <published>2014-07-17T09:17:39.000Z</published>
     <updated>2015-08-25T02:50:22.000Z</updated>
     <content type="html"><![CDATA[<a id="more"></a>]]></content>
@@ -376,14 +376,14 @@
     <![CDATA[<a id="more"></a>]]>
     </summary>
     
-      <category term="summary" scheme="http://yoursite.com/categories/summary/"/>
+      <category term="summary" scheme="http://tanghongbin.me/categories/summary/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[开博文]]></title>
-    <link href="http://yoursite.com/2014/07/17/zhong-wen-ban/"/>
-    <id>http://yoursite.com/2014/07/17/zhong-wen-ban/</id>
+    <link href="http://tanghongbin.me/2014/07/17/zhong-wen-ban/"/>
+    <id>http://tanghongbin.me/2014/07/17/zhong-wen-ban/</id>
     <published>2014-07-17T03:45:14.000Z</published>
     <updated>2015-08-27T15:30:09.000Z</updated>
     <content type="html"><![CDATA[<p>一直感觉应该写点东西来记录自己学过的知识，却一直缺乏行动。最近手头上的项目因为莫名的原因停滞了，于是抽起了筋，研究了下<a href="http://octopress.org/" target="_blank" rel="noopener"><code>Otcopress</code></a>搭建了我的第一个blog。<a id="more"></a>本来只是打算放在<a href="https://pages.github.com/" target="_blank" rel="noopener"><code>github pages</code></a>上的，但我忽略了大天朝这个大环境（骑骑）→_→好吧，这个不多说。现时比较完美的解决方案就是放在<a href="https://gitcafe.com" target="_blank" rel="noopener"><code>GitCafe</code></a>上，这也是看了<a href="http://blog.devtang.com/blog/2014/06/02/use-gitcafe-to-host-blog/" target="_blank" rel="noopener"><code>唐大的一篇文章</code></a>，做出的选择，顺便说句，唐大的blog上真的很多干货：）。<br><br><br>至于为什么抽起了筋，大概是因为最近遇到很多事，烦人的7月，各种令你无奈、无助感觉，也是为了积累、总结一下自己这三年的工作学习经历，不然到最后，会发现自己没有什么拿得出手的。<br><br><br>其实觉得更重要的一点是，觉得我可以有个地方去分享自己学习的过程和心得，最好是能收到各方大大的批评和斧正。在程序猿的世界，<code>分享是获得成长的最好方式</code>。<br><br><br>废话不多说了~作为一名合格的程序猿，不应该那么感性，开个玩笑，以这篇开博文，开始我的分享、记录之旅。</p>
@@ -393,7 +393,7 @@
     
     </summary>
     
-      <category term="summary" scheme="http://yoursite.com/categories/summary/"/>
+      <category term="summary" scheme="http://tanghongbin.me/categories/summary/"/>
     
   </entry>
   
