@@ -106,20 +106,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[octopress 写文章]]></title>
-    <link href="http://tanghongbin.me/2015/04/23/octopress-xie-wen-zhang/"/>
-    <id>http://tanghongbin.me/2015/04/23/octopress-xie-wen-zhang/</id>
-    <published>2015-04-23T09:39:54.000Z</published>
-    <updated>2015-07-26T12:00:50.000Z</updated>
-    <content type="html"><![CDATA[<p>生命之氢 Blog <a href="http://shengmingzhiqing.com/blog/octopress-tutorials-toc.html/" target="_blank" rel="noopener">《Octopress 教程目录》</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>生命之氢 Blog <a href="http://shengmingzhiqing.com/blog/octopress-tutorials-toc.html/" target="_blank" rel="noopener">《Octopress 教程目录》</a></p]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[在Xcode6里使用矢量图-译]]></title>
     <link href="http://tanghongbin.me/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/"/>
     <id>http://tanghongbin.me/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/</id>
@@ -375,23 +361,6 @@
     <content type="html"><![CDATA[<a id="more"></a>]]></content>
     <summary type="html">
     <![CDATA[<a id="more"></a>]]>
-    </summary>
-    
-      <category term="summary" scheme="http://tanghongbin.me/categories/summary/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[开博文]]></title>
-    <link href="http://tanghongbin.me/2014/07/17/zhong-wen-ban/"/>
-    <id>http://tanghongbin.me/2014/07/17/zhong-wen-ban/</id>
-    <published>2014-07-17T03:45:14.000Z</published>
-    <updated>2015-08-27T15:30:09.000Z</updated>
-    <content type="html"><![CDATA[<p>一直感觉应该写点东西来记录自己学过的知识，却一直缺乏行动。最近手头上的项目因为莫名的原因停滞了，于是抽起了筋，研究了下<a href="http://octopress.org/" target="_blank" rel="noopener"><code>Otcopress</code></a>搭建了我的第一个blog。<a id="more"></a>本来只是打算放在<a href="https://pages.github.com/" target="_blank" rel="noopener"><code>github pages</code></a>上的，但我忽略了大天朝这个大环境（骑骑）→_→好吧，这个不多说。现时比较完美的解决方案就是放在<a href="https://gitcafe.com" target="_blank" rel="noopener"><code>GitCafe</code></a>上，这也是看了<a href="http://blog.devtang.com/blog/2014/06/02/use-gitcafe-to-host-blog/" target="_blank" rel="noopener"><code>唐大的一篇文章</code></a>，做出的选择，顺便说句，唐大的blog上真的很多干货：）。<br><br><br>至于为什么抽起了筋，大概是因为最近遇到很多事，烦人的7月，各种令你无奈、无助感觉，也是为了积累、总结一下自己这三年的工作学习经历，不然到最后，会发现自己没有什么拿得出手的。<br><br><br>其实觉得更重要的一点是，觉得我可以有个地方去分享自己学习的过程和心得，最好是能收到各方大大的批评和斧正。在程序猿的世界，<code>分享是获得成长的最好方式</code>。<br><br><br>废话不多说了~作为一名合格的程序猿，不应该那么感性，开个玩笑，以这篇开博文，开始我的分享、记录之旅。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>一直感觉应该写点东西来记录自己学过的知识，却一直缺乏行动。最近手头上的项目因为莫名的原因停滞了，于是抽起了筋，研究了下<a href="http://octopress.org/" target="_blank" rel="noopener"><code>Otcopress</code></a>搭建了我的第一个blog。]]>
-    
     </summary>
     
       <category term="summary" scheme="http://tanghongbin.me/categories/summary/"/>
