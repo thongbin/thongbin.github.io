@@ -94,19 +94,19 @@
 
 
 
-<meta name="description" content="####实现UISearchDisplayController 默认显示初始数据UITableView效果">
+<meta name="description" content="实现UISearchDisplayController 默认显示初始数据UITableView效果最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchRes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现UISearchDisplayController 默认显示初始数据UITableView效果">
 <meta property="og:url" content="http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/index.html">
 <meta property="og:site_name" content="tanghongbin">
-<meta property="og:description" content="####实现UISearchDisplayController 默认显示初始数据UITableView效果">
+<meta property="og:description" content="实现UISearchDisplayController 默认显示初始数据UITableView效果最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchRes">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tanghongbin.me/images/searchDisplayController_1.png">
 <meta property="og:image" content="http://tanghongbin.me/images/searchDisplayController_2.png">
-<meta property="og:updated_time" content="2018-03-22T06:46:55.522Z">
+<meta property="og:updated_time" content="2018-03-23T02:47:18.559Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现UISearchDisplayController 默认显示初始数据UITableView效果">
-<meta name="twitter:description" content="####实现UISearchDisplayController 默认显示初始数据UITableView效果">
+<meta name="twitter:description" content="实现UISearchDisplayController 默认显示初始数据UITableView效果最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchRes">
 <meta name="twitter:image" content="http://tanghongbin.me/images/searchDisplayController_1.png">
 
 
@@ -385,9 +385,8 @@
       
 
       
-        <p>####实现UISearchDisplayController 默认显示初始数据UITableView效果</p>
+        <h4 id="实现UISearchDisplayController_默认显示初始数据UITableView效果">实现UISearchDisplayController 默认显示初始数据UITableView效果</h4><p>最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearchBar没输入任何内容之前是不显示的。</p>
 <a id="more"></a>
-<p>最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearchBar没输入任何内容之前是不显示的。</p>
 <ul>
 <li>先看效果：</li>
 </ul>
@@ -396,7 +395,7 @@
 <li><p>实现这个效果，很多人首先会进入一个误区，就是会想着进来一显示的那个UITablView就是UISearchDisplayController的searchResultTableView，其实不然，只要思维走出这误区，接下来的事情就很容易了。<br>事实上，我是另外新建了一个UITableView作为searchRecordTableView，在激活搜索之后，默认显示搜索记录，当用户开始搜索，隐藏搜索历史记录列表，让searchResultTableView显示出来，这就是基本思路，说得挺简单，实现起来也简单，只是有几个地方要注意：<br><br></p>
 </li>
 <li><p>searchRecordTableView要添加到 controller.searchContentsController.view 的 subviews</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)searchDisplayControllerDidBeginSearch:(<span class="built_in">UISearchDisplayController</span> *)controller</span><br><span class="line">&#123;</span><br><span class="line">    [controller.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)searchBar:(<span class="built_in">UISearchBar</span> *)searchBar textDidChange:(<span class="built_in">NSString</span> *)searchText</span><br><span class="line">&#123;</span><br><span class="line">    _searchText = searchText;</span><br><span class="line">    <span class="keyword">if</span> ([searchText length] &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">        [_recordTableView removeFromSuperview];</span><br><span class="line">        <span class="meta">#warning 请求搜索补全</span></span><br><span class="line">        </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [_recordTableView reloadData];</span><br><span class="line">        [<span class="keyword">self</span>.searchDisplayController.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)searchDisplayControllerDidBeginSearch:(<span class="built_in">UISearchDisplayController</span> *)controller</span><br><span class="line">&#123;</span><br><span class="line">    [controller.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)searchBar:(<span class="built_in">UISearchBar</span> *)searchBar textDidChange:(<span class="built_in">NSString</span> *)searchText</span><br><span class="line">&#123;</span><br><span class="line">    _searchText = searchText;</span><br><span class="line">    <span class="keyword">if</span> ([searchText length] &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">        [_recordTableView removeFromSuperview];</span><br><span class="line">        <span class="meta">#warning 请求搜索补全</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [_recordTableView reloadData];</span><br><span class="line">        [<span class="keyword">self</span>.searchDisplayController.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
@@ -503,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/hexo_avatar.jpeg"
@@ -579,6 +587,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现UISearchDisplayController_默认显示初始数据UITableView效果"><span class="nav-number">1.</span> <span class="nav-text">实现UISearchDisplayController 默认显示初始数据UITableView效果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
