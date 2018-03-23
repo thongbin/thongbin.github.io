@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="tanghongbin">
 <meta property="og:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2015-08-20T19:57:40.000Z">
+<meta property="og:updated_time" content="2018-03-23T02:34:01.792Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[转载]主题更换设计思路">
 <meta name="twitter:description" content="原出处：传人的技术博客现在App类似桌面软件的趋势，在功能完善之后，渐渐追求个性化，以满足不同用户的审美，主题更换就是其中一项，像Weico微博客户端，UC浏览器。所谓主题，可以看成相同功能不同展现可视资源的集合，例如，按钮无论在什么主题下都需要背景图片这个资源，只是在不同主题下是不同的背景图片而已。">
@@ -210,8 +210,18 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -221,7 +231,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -231,7 +241,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -312,6 +322,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -355,7 +387,7 @@
 <h5 id="1-_主题管理">1. 主题管理</h5><p>主题的特性导致代码不关心资源的表现是什么，只关心资源的功能，而主题是易变化的，因此需要将易变化的部分抽离出来，整合到一个管理者中，主题的变化在管理者中完成，而不影响资源使用的地方。而且这个管理者是全局唯一的，因此使用单例。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+ (ThemeManager *)sharedInstance</span><br><span class="line">&#123;</span><br><span class="line">    static ThemeManager *sharedInstance = nil;</span><br><span class="line">    if (sharedInstance == nil)</span><br><span class="line">    &#123;</span><br><span class="line">        sharedInstance = [[ThemeManager alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    return sharedInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>主题中的资源使用plist进行存储，颜色的RGBA值跟字体的信息可以直接存入plist，而图片则可以存入图片的位置。按主题命名plist文件，ThemeManager的初始化跟主题更换就从main bundle中按主题名字读取对应的plist文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (id)init</span><br><span class="line">&#123;</span><br><span class="line">    if (self = [super init])</span><br><span class="line">    &#123;</span><br><span class="line">        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];</span><br><span class="line">        NSString *themeName = [defaults objectForKey:@&quot;theme&quot;] ?: @&quot;default&quot;;</span><br><span class="line">                                            </span><br><span class="line">        NSString *path = [[NSBundle mainBundle] pathForResource:themeName ofType:@&quot;plist&quot;];</span><br><span class="line">        self.theme = [NSDictionary dictionaryWithContentsOfFile:path];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (id)init</span><br><span class="line">&#123;</span><br><span class="line">    if (self = [super init])</span><br><span class="line">    &#123;</span><br><span class="line">        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];</span><br><span class="line">        NSString *themeName = [defaults objectForKey:@&quot;theme&quot;] ?: @&quot;default&quot;;</span><br><span class="line"></span><br><span class="line">        NSString *path = [[NSBundle mainBundle] pathForResource:themeName ofType:@&quot;plist&quot;];</span><br><span class="line">        self.theme = [NSDictionary dictionaryWithContentsOfFile:path];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>代码中不再是直接使用主题相关的资源，而是通过ThemeManager得到对应主题下的资源。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 直接使用资源：</span><br><span class="line">UIImage *image = [UIImage imageNamed:@&quot;xxx_btn_background&quot;];</span><br><span class="line">// 通过主题管理器使用资源：</span><br><span class="line">NSDictionary *theme = [ThemeManager sharedInstance].theme;</span><br><span class="line">NSString *imageName = [theme objectForKey:@&quot;xxx_btn_background&quot;];</span><br><span class="line">UIImage *image = [UIImage imageNamed:imageName];</span><br><span class="line">上面的代码在使用时还是有些复杂，代码只关心资源的功能，不关系也不应该关心取资源的细节，因此应在ThemeManager对取资源进行如下封装：</span><br><span class="line"></span><br><span class="line">- (UIImage *)imageForKey:(NSString *)key;</span><br><span class="line">在使用主题中的资源时，代码就变成了：</span><br><span class="line"></span><br><span class="line">UIImage *image = [[ThemeManager sharedInstance] imageForKey:@&quot;xxx_btn_background&quot;];</span><br></pre></td></tr></table></figure>
 <h5 id="2-_资源的放置">2. 资源的放置</h5><p>当系统将主题相关的资源文件部署到ios设备中时，在默认情况下，系统会将所有的资源plat平铺拷贝到mainBundle目录下，即使你的资源是按文件夹来组织的。（我们可以在模拟器中查看Bundle的情况，模拟器的路径是：~/Library/Application Support/iPhone Simulator）</p>
@@ -487,7 +519,7 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
+              <a href="/archives">
                 <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
@@ -498,10 +530,10 @@
             
             
             <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">1</span>
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
