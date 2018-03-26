@@ -94,20 +94,17 @@
 
 
 
-<meta name="description" content="实现UISearchDisplayController 默认显示初始数据UITableView效果最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchRes">
+<meta name="description" content="说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实现UISearchDisplayController 默认显示初始数据UITableView效果">
-<meta property="og:url" content="http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/index.html">
+<meta property="og:title" content="NSOperation 与 GCD 的对比">
+<meta property="og:url" content="http://tanghongbin.me/2018/03/26/nsoperationvsgcd/index.html">
 <meta property="og:site_name" content="tanghongbin">
-<meta property="og:description" content="实现UISearchDisplayController 默认显示初始数据UITableView效果最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchRes">
+<meta property="og:description" content="说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://tanghongbin.me/images/searchDisplayController_1.png">
-<meta property="og:image" content="http://tanghongbin.me/images/searchDisplayController_2.png">
-<meta property="og:updated_time" content="2018-03-23T02:47:18.559Z">
+<meta property="og:updated_time" content="2018-03-26T09:34:07.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实现UISearchDisplayController 默认显示初始数据UITableView效果">
-<meta name="twitter:description" content="实现UISearchDisplayController 默认显示初始数据UITableView效果最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchRes">
-<meta name="twitter:image" content="http://tanghongbin.me/images/searchDisplayController_1.png">
+<meta name="twitter:title" content="NSOperation 与 GCD 的对比">
+<meta name="twitter:description" content="说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。">
 
 
 
@@ -136,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/"/>
+  <link rel="canonical" href="http://tanghongbin.me/2018/03/26/nsoperationvsgcd/"/>
 
 
 
 
 
-  <title>实现UISearchDisplayController 默认显示初始数据UITableView效果 | tanghongbin</title>
+  <title>NSOperation 与 GCD 的对比 | tanghongbin</title>
   
 
 
@@ -285,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/">
+    <link itemprop="mainEntityOfPage" href="http://tanghongbin.me/2018/03/26/nsoperationvsgcd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="tanghongbin">
@@ -302,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">实现UISearchDisplayController 默认显示初始数据UITableView效果</h1>
+          <h1 class="post-title" itemprop="name headline">NSOperation 与 GCD 的对比</h1>
         
 
         <div class="post-meta">
@@ -314,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-09-21T03:12:51+08:00">
-                2014-09-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T17:04:09+08:00">
+                2018-03-26
               </time>
             
 
@@ -355,9 +352,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/26/nsoperationvsgcd/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/26/nsoperationvsgcd/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -385,27 +382,26 @@
       
 
       
-        <h4 id="实现UISearchDisplayController_默认显示初始数据UITableView效果">实现UISearchDisplayController 默认显示初始数据UITableView效果</h4><p>最近做的项目需要实现类似iOS版 QQ的联系人搜索一样效果的搜索功能，就是UISearchDisplayController通过UISearchBar激活搜索状态后，会首先显示一个搜索历史的列表，当然前提是有搜索历史系统默认的UISearchDisplayController自带一个searchResultTableView，看命名就知道系统是希望我们会用来显示搜索结果的，而且它在UISearchBar没输入任何内容之前是不显示的。</p>
+        <p>说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。</p>
 <a id="more"></a>
+<p>对比它们可以从下面几个角度来说：</p>
 <ul>
-<li>先看效果：</li>
-</ul>
-<p><img src="/images/searchDisplayController_1.png" alt="searchDisplayController_1"> <img src="/images/searchDisplayController_2.png" alt="searchDisplayController_2"></p>
-<ul>
-<li><p>实现这个效果，很多人首先会进入一个误区，就是会想着进来一显示的那个UITablView就是UISearchDisplayController的searchResultTableView，其实不然，只要思维走出这误区，接下来的事情就很容易了。<br>事实上，我是另外新建了一个UITableView作为searchRecordTableView，在激活搜索之后，默认显示搜索记录，当用户开始搜索，隐藏搜索历史记录列表，让searchResultTableView显示出来，这就是基本思路，说得挺简单，实现起来也简单，只是有几个地方要注意：<br><br></p>
+<li><p>从实现层面上看，<code>NSOperationQueue</code> 是基于 <code>GCD</code> 的更高层的封装，早起并不是，从 OS X 10.10 开始可以通过设置 <code>underlyingQueue</code> 来把 <code>operation</code> 放到已有的 <code>dispatch queue</code> 中。</p>
 </li>
-<li><p>searchRecordTableView要添加到 controller.searchContentsController.view 的 subviews</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)searchDisplayControllerDidBeginSearch:(<span class="built_in">UISearchDisplayController</span> *)controller</span><br><span class="line">&#123;</span><br><span class="line">    [controller.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)searchBar:(<span class="built_in">UISearchBar</span> *)searchBar textDidChange:(<span class="built_in">NSString</span> *)searchText</span><br><span class="line">&#123;</span><br><span class="line">    _searchText = searchText;</span><br><span class="line">    <span class="keyword">if</span> ([searchText length] &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">        [_recordTableView removeFromSuperview];</span><br><span class="line">        <span class="meta">#warning 请求搜索补全</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [_recordTableView reloadData];</span><br><span class="line">        [<span class="keyword">self</span>.searchDisplayController.searchContentsController.view addSubview:_recordTableView];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>从易用性角度，<code>GCD</code> 由于采用 <code>C</code> 风格的 <code>API</code>，在调用上比使用面向对象风格的 <code>NSOperation</code> 要简单一些，<code>NSOperation</code> 则以对象形式去控制任务的执行与并发，构建出来的业务流程能更方便于开发者理解。</p>
+</li>
+<li><p>从对任务的控制性来说，<code>NSOperation</code> 显著得好于 <code>GCD</code>，和 <code>GCD</code> 相比支持了 <code>Cancel</code> 操作（注：在 iOS8 中 GCD 引入了 dispatch_block_cancel 和 dispatch_block_testcancel，也可以支持 Cancel 操作了），支持任务之间的依赖关系，支持同一个队列中任务的优先级设置，同时还可以通过 KVO 来监控任务的执行情况。这些通过 GCD 也可以实现，不过需要很多代码，使用 NSOperation 显得方便了很多。</p>
+</li>
+<li><p>从第三方库的角度，知名的第三方库如 AFNetworking 和 SDWebImage 背后都是使用 NSOperation，也从另一方面说明对于需要复杂并发控制的需求，NSOperation 是更好的选择（当然也不是绝对的，例如知名的 <a href="https://github.com/ParsePlatform/Parse-SDK-iOS-OSX" target="_blank" rel="noopener">Parse SDK</a> 就完全没有使用 NSOperation，全部使用 GCD，其中涉及到大量的 GCD 高级用法，这里有<a href="https://github.com/ChenYilong/ParseSourceCodeStudy" target="_blank" rel="noopener">相关解析</a>）。</p>
 </li>
 </ul>
-<p><br></p>
-<ul>
-<li>searchRecordTableView 的 Frame</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_recordTableView = [[<span class="built_in">UITableView</span> alloc]initWithFrame:<span class="string">"基于searchBar的frame来控制"</span> style:<span class="built_in">UITableViewStylePlain</span>];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>两个UITableView可以使用同一个UITablViewDelegate,UITableViewDataSource，只要在具体函数里面做做处理。</li>
-<li>具体代码:    <a href="https://github.com/thongbin/TBSearchViewController" target="_blank" rel="noopener">Github</a></li>
+<h5 id="参考资料">参考资料</h5><ul>
+<li><a href="http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues" target="_blank" rel="noopener">http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues</a></li>
+<li><a href="http://www.humancode.us/2014/08/14/target-queues.html" target="_blank" rel="noopener">http://www.humancode.us/2014/08/14/target-queues.html</a></li>
+<li><a href="http://www.dribin.org/dave/blog/archives/2009/05/05/concurrent_operations/" target="_blank" rel="noopener">http://www.dribin.org/dave/blog/archives/2009/05/05/concurrent_operations/</a></li>
+<li><a href="http://www.jianshu.com/p/0b0d9b1f1f19" target="_blank" rel="noopener">http://www.jianshu.com/p/0b0d9b1f1f19</a></li>
+<li><a href="http://www.cnblogs.com/tangbinblog/p/4133481.html" target="_blank" rel="noopener">http://www.cnblogs.com/tangbinblog/p/4133481.html</a></li>
+<li><a href="http://www.saitjr.com/ios/ios-" target="_blank" rel="noopener">http://www.saitjr.com/ios/ios-gcd-deadlock.html</a></li>
 </ul>
 
       
@@ -431,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/07/24/staticguan-jian-zi-he-constguan-jian-zi/" rel="next" title="static关键字和const关键字">
-                <i class="fa fa-chevron-left"></i> static关键字和const关键字
+              <a href="/2018/03/23/NSOperation/" rel="next" title="NSOperation & NSOPerationQueue">
+                <i class="fa fa-chevron-left"></i> NSOperation & NSOPerationQueue
               </a>
             
           </div>
@@ -440,10 +436,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/09/22/zai-xcode6li-shi-yong-shi-liang-tu-yi/" rel="prev" title="在Xcode6里使用矢量图-译">
-                在Xcode6里使用矢量图-译 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -597,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现UISearchDisplayController_默认显示初始数据UITableView效果"><span class="nav-number">1.</span> <span class="nav-text">实现UISearchDisplayController 默认显示初始数据UITableView效果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -740,9 +732,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://tanghongbin.me/2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/';
-          this.page.identifier = '2014/09/21/shi-xian-uisearchdisplaycontroller-mo-ren-xian-shi-chu-shi-shu-ju-uitableviewxiao-guo/';
-          this.page.title = '实现UISearchDisplayController 默认显示初始数据UITableView效果';
+          this.page.url = 'http://tanghongbin.me/2018/03/26/nsoperationvsgcd/';
+          this.page.identifier = '2018/03/26/nsoperationvsgcd/';
+          this.page.title = 'NSOperation 与 GCD 的对比';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://kelvintong.disqus.com/embed.js';

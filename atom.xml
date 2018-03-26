@@ -4,7 +4,7 @@
   <subtitle><![CDATA[iOS Developer, S.H.S.F.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://tanghongbin.me/"/>
-  <updated>2018-03-23T02:33:50.562Z</updated>
+  <updated>2018-03-26T09:34:07.182Z</updated>
   <id>http://tanghongbin.me/</id>
   
   <author>
@@ -13,6 +13,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[NSOperation 与 GCD 的对比]]></title>
+    <link href="http://tanghongbin.me/2018/03/26/nsoperationvsgcd/"/>
+    <id>http://tanghongbin.me/2018/03/26/nsoperationvsgcd/</id>
+    <published>2018-03-26T09:04:09.000Z</published>
+    <updated>2018-03-26T09:34:07.182Z</updated>
+    <content type="html"><![CDATA[<p>说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。</p>
+<a id="more"></a>
+<p>对比它们可以从下面几个角度来说：</p>
+<ul>
+<li><p>从实现层面上看，<code>NSOperationQueue</code> 是基于 <code>GCD</code> 的更高层的封装，早起并不是，从 OS X 10.10 开始可以通过设置 <code>underlyingQueue</code> 来把 <code>operation</code> 放到已有的 <code>dispatch queue</code> 中。</p>
+</li>
+<li><p>从易用性角度，<code>GCD</code> 由于采用 <code>C</code> 风格的 <code>API</code>，在调用上比使用面向对象风格的 <code>NSOperation</code> 要简单一些，<code>NSOperation</code> 则以对象形式去控制任务的执行与并发，构建出来的业务流程能更方便于开发者理解。</p>
+</li>
+<li><p>从对任务的控制性来说，<code>NSOperation</code> 显著得好于 <code>GCD</code>，和 <code>GCD</code> 相比支持了 <code>Cancel</code> 操作（注：在 iOS8 中 GCD 引入了 dispatch_block_cancel 和 dispatch_block_testcancel，也可以支持 Cancel 操作了），支持任务之间的依赖关系，支持同一个队列中任务的优先级设置，同时还可以通过 KVO 来监控任务的执行情况。这些通过 GCD 也可以实现，不过需要很多代码，使用 NSOperation 显得方便了很多。</p>
+</li>
+<li><p>从第三方库的角度，知名的第三方库如 AFNetworking 和 SDWebImage 背后都是使用 NSOperation，也从另一方面说明对于需要复杂并发控制的需求，NSOperation 是更好的选择（当然也不是绝对的，例如知名的 <a href="https://github.com/ParsePlatform/Parse-SDK-iOS-OSX" target="_blank" rel="noopener">Parse SDK</a> 就完全没有使用 NSOperation，全部使用 GCD，其中涉及到大量的 GCD 高级用法，这里有<a href="https://github.com/ChenYilong/ParseSourceCodeStudy" target="_blank" rel="noopener">相关解析</a>）。</p>
+</li>
+</ul>
+<h5 id="参考资料">参考资料</h5><ul>
+<li><a href="http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues" target="_blank" rel="noopener">http://www.raywenderlich.com/19788/how-to-use-nsoperations-and-nsoperationqueues</a></li>
+<li><a href="http://www.humancode.us/2014/08/14/target-queues.html" target="_blank" rel="noopener">http://www.humancode.us/2014/08/14/target-queues.html</a></li>
+<li><a href="http://www.dribin.org/dave/blog/archives/2009/05/05/concurrent_operations/" target="_blank" rel="noopener">http://www.dribin.org/dave/blog/archives/2009/05/05/concurrent_operations/</a></li>
+<li><a href="http://www.jianshu.com/p/0b0d9b1f1f19" target="_blank" rel="noopener">http://www.jianshu.com/p/0b0d9b1f1f19</a></li>
+<li><a href="http://www.cnblogs.com/tangbinblog/p/4133481.html" target="_blank" rel="noopener">http://www.cnblogs.com/tangbinblog/p/4133481.html</a></li>
+<li><a href="http://www.saitjr.com/ios/ios-" target="_blank" rel="noopener">http://www.saitjr.com/ios/ios-gcd-deadlock.html</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。</p>]]>
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[NSOperation & NSOPerationQueue]]></title>
+    <link href="http://tanghongbin.me/2018/03/23/NSOperation/"/>
+    <id>http://tanghongbin.me/2018/03/23/NSOperation/</id>
+    <published>2018-03-23T09:25:41.000Z</published>
+    <updated>2018-03-26T09:07:10.640Z</updated>
+    <content type="html"><![CDATA[<h1 id="NSOperation">NSOperation</h1><p>使用 <code>GCD</code> 很方便多线程执行并发任务，但是也有缺点，如果想实现线程之间的依赖，使用 <code>GCD</code> 就需要嵌套，嵌套就容易出现死锁的问题。</p>
+<a id="more"></a>
+<p>关于这个问题，苹果提供了一套另一套多线程实现标准 <code>NSOperation</code><br><code>NSOperation</code> 是基于 <code>GCD</code> 的更高层的封装，只是使用起来方不方便是见仁见智的事，重要的是 <code>NSOperation</code> 提供了操作依赖的接口 <code>addDependency</code> 。</p>
+<h2 id="NSOperation_使用:">NSOperation 使用:</h2><p><code>NSOperation</code> 是一个抽象类，不能直接使用，使用的时候要先继承子类，实现相关方法，或者使用系统定义好的子类 <code>NSInvocationOperation</code> 和 <code>NSBlockOperation</code> 。</p>
+<h4 id="NSInvokcationOperation"><code>NSInvokcationOperation</code></h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">NSInvocationOperation</span> *operation = [[<span class="built_in">NSInvocationOperation</span> alloc] initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(run:) object:<span class="literal">nil</span>];</span><br><span class="line">[operation start];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第1行初始化了一个<code>NSInvocationOperation</code>对象，它是基于一个对象和<code>selector</code>来创建操作</p>
+</li>
+<li><p>第2行调用了<code>start</code>方法，紧接着会马上执行封装好的操作，也就是会调用<code>self</code>的<code>run:</code>，可以利用<code>obejct</code>携带参数</p>
+</li>
+<li><p>默认情况下，调用了start方法后并不会开一条新线程去执行操作，而是在当前线程同步执行操作。</p>
+</li>
+</ul>
+<h4 id="NSBlockOperation"><code>NSBlockOperation</code></h4><ul>
+<li>同样的，这里时与当前线程同步执行一个任务</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">NSBlockOperation</span> *operation = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^()&#123;</span><br><span class="line">         <span class="built_in">NSLog</span>(<span class="string">@"执行了一个新的操作"</span>);</span><br><span class="line"> &#125;];</span><br><span class="line"><span class="comment">// 开始执行任务</span></span><br><span class="line">[operation start];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>并发执行多个任务的方式:</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSBlockOperation</span> *operation = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^()&#123;</span><br><span class="line">　　<span class="built_in">NSLog</span>(<span class="string">@"执行第1次操作，线程：%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[operation addExecutionBlock:^() &#123;</span><br><span class="line">　　<span class="built_in">NSLog</span>(<span class="string">@"又执行了1个新的操作，线程：%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[operation addExecutionBlock:^() &#123;</span><br><span class="line">　　<span class="built_in">NSLog</span>(<span class="string">@"又执行了1个新的操作，线程：%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[operation addExecutionBlock:^() &#123;</span><br><span class="line">　　<span class="built_in">NSLog</span>(<span class="string">@"又执行了1个新的操作，线程：%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始执行任务</span></span><br><span class="line">[operation start];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>单独使用 <code>NSOperation</code> 及其子类时，任务会默认在当前线程执行。以上是 <code>NSOperation</code> 的基本使用方法。</li>
+</ul>
+<h1 id="NSOperationQueue">NSOperationQueue</h1><p>前面单独使用 <code>NSOperation</code> 的 <code>start</code> ，默认是在当前线程同步执行的。当把 <code>operation</code> 放进 <code>operationqueue</code> <code>的时候，operationqueue</code> 会自动并发执行 <code>queue</code> 里面的 <code>operations</code> <code>，NSOperationQueue</code> 有属性 <code>maxConcurrentCount</code> 可以控制并发数，当值为 <code>1</code> 时，是串行队列，按 <code>FIFO</code> 顺序执行 <code>operation</code>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSBlockOperation</span> *block1 = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^&#123;</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@"%@  1"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">  &#125;];</span><br><span class="line">  block1.name = <span class="string">@"1"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSBlockOperation</span> *block2 = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^&#123;</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@"%@  2"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">  &#125;];</span><br><span class="line">  block2.name = <span class="string">@"2"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSBlockOperation</span> *block3 = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^&#123;</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@"%@  3"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">  &#125;];</span><br><span class="line">  block3.name = <span class="string">@"3"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSBlockOperation</span> *block4 = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^&#123;</span><br><span class="line">      <span class="built_in">NSLog</span>(<span class="string">@"%@  4"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">  &#125;];</span><br><span class="line">  block4.name = <span class="string">@"4"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSOperationQueue</span> *queue = [<span class="built_in">NSOperationQueue</span> mainQueue];</span><br><span class="line">  queue.maxConcurrentOperationCount = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  [queue addOperation:block1];</span><br><span class="line">  [queue addOperation:block2];</span><br><span class="line">  [queue addOperation:block3];</span><br><span class="line">  [queue addOperation:block4];</span><br></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000000721c0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;  <span class="number">1</span></span><br><span class="line">&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000000721c0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;  <span class="number">2</span></span><br><span class="line">&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000000721c0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;  <span class="number">3</span></span><br><span class="line">&lt;<span class="built_in">NSThread</span>: <span class="number">0x6000000721c0</span>&gt;&#123;number = <span class="number">1</span>, name = main&#125;  <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>maxConcurrentCount</code> 为 <code>1</code> <code>时，queue</code> 本身是串行队列时，例如 <code>[NSOpertionQueue mainQueue]</code> , <code>operation</code> 都会在同一条线程上按加入队列的顺序执行，如果 <code>queue</code> 是新建的 <code>[NSOperationQueue new]</code>，<code>operation</code> 不一定都在同一条线程上执行。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//number 的不同代表不是同一条线程</span></span><br><span class="line">  &lt;<span class="built_in">NSThread</span>: <span class="number">0x600000066300</span>&gt;&#123;number = <span class="number">3</span>, name = (null)&#125;  <span class="number">1</span></span><br><span class="line">  &lt;<span class="built_in">NSThread</span>: <span class="number">0x600000066300</span>&gt;&#123;number = <span class="number">4</span>, name = (null)&#125;  <span class="number">2</span></span><br><span class="line">  &lt;<span class="built_in">NSThread</span>: <span class="number">0x600000066300</span>&gt;&#123;number = <span class="number">4</span>, name = (null)&#125;  <span class="number">3</span></span><br><span class="line">  &lt;<span class="built_in">NSThread</span>: <span class="number">0x600000066300</span>&gt;&#123;number = <span class="number">4</span>, name = (null)&#125;  <span class="number">4</span></span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="NSOperation">NSOperation</h1><p>使用 <code>GCD</code> 很方便多线程执行并发任务，但是也有缺点，如果想实现线程之间的依赖，使用 <code>GCD</code> 就需要嵌套，嵌套就容易出现死锁的问题。</p>]]>
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://tanghongbin.me/categories/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Git 全局忽略 不需要的版本跟踪的文件]]></title>
@@ -240,8 +324,9 @@
     <link href="http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/"/>
     <id>http://tanghongbin.me/2014/07/21/grand-central-dispath-gcd-xue-xi/</id>
     <published>2014-07-21T06:18:09.000Z</published>
-    <updated>2018-03-23T09:16:22.237Z</updated>
-    <content type="html"><![CDATA[<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="noopener">官方文档</a>。</p>
+    <updated>2018-03-23T09:23:46.037Z</updated>
+    <content type="html"><![CDATA[<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。GCD是一组用C语言封装的多线程技术API。</p>
+<p>关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="noopener">官方文档</a>。</p>
 <a id="more"></a>
 <h3 id="特性">特性</h3><ul>
 <li>基于队列工作 dispatch queue，严格按照FIFO（first in first out）</li>
@@ -315,7 +400,8 @@
 <h4 id="实际应用">实际应用</h4><p>等待网络请求异步回调callback才继续后面业务：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">_block <span class="built_in">BOOL</span> isok = <span class="literal">NO</span>;  </span><br><span class="line"></span><br><span class="line">    dispatch_semaphore_t sema = dispatch_semaphore_create(<span class="number">0</span>);  </span><br><span class="line">    Engine *engine = [[Engine alloc] init];  </span><br><span class="line">    [engine queryCompletion:^(<span class="built_in">BOOL</span> isOpen) &#123;  </span><br><span class="line">        isok = isOpen;  </span><br><span class="line">        dispatch_semaphore_signal(sema);  </span><br><span class="line">    &#125; onError:^(<span class="keyword">int</span> errorCode, <span class="built_in">NSString</span> *errorMessage) &#123;  </span><br><span class="line">        isok = <span class="literal">NO</span>;  </span><br><span class="line">        dispatch_semaphore_signal(sema);  </span><br><span class="line">    &#125;];  </span><br><span class="line"></span><br><span class="line">    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);  </span><br><span class="line">    <span class="comment">// todo what you want to do after net callback</span></span><br></pre></td></tr></table></figure></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="noopener">官方文档</a>。</p>]]>
+    <![CDATA[<p>Grand Central Dispatch 简称GCD，苹果在Mac OS X 10.6 ，iOS 4平台首次发布，后续平台也可用。GCD是一组用C语言封装的多线程技术API。</p>
+<p>关于GCD的更多信息，参考<a href="https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/Reference/reference.html#//apple_ref/doc/uid/TP40008079-CH1-SW1" target="_blank" rel="noopener">官方文档</a>。</p>]]>
     
     </summary>
     
