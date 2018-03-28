@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="tanghongbin">
 <meta property="og:description" content="说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-26T09:34:07.182Z">
+<meta property="og:updated_time" content="2018-03-26T09:37:44.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSOperation 与 GCD 的对比">
 <meta name="twitter:description" content="说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。">
@@ -382,7 +382,7 @@
       
 
       
-        <p>说在前面，无论是选择 GCD 还是 NSOperation ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。</p>
+        <p>说在前面，无论是选择 <code>GCD</code> 还是 <code>NSOperation</code> ，从来都不应该用好与坏去区分，只能说要看具体的业务需求，考虑实际使用情况。</p>
 <a id="more"></a>
 <p>对比它们可以从下面几个角度来说：</p>
 <ul>
@@ -390,9 +390,9 @@
 </li>
 <li><p>从易用性角度，<code>GCD</code> 由于采用 <code>C</code> 风格的 <code>API</code>，在调用上比使用面向对象风格的 <code>NSOperation</code> 要简单一些，<code>NSOperation</code> 则以对象形式去控制任务的执行与并发，构建出来的业务流程能更方便于开发者理解。</p>
 </li>
-<li><p>从对任务的控制性来说，<code>NSOperation</code> 显著得好于 <code>GCD</code>，和 <code>GCD</code> 相比支持了 <code>Cancel</code> 操作（注：在 iOS8 中 GCD 引入了 dispatch_block_cancel 和 dispatch_block_testcancel，也可以支持 Cancel 操作了），支持任务之间的依赖关系，支持同一个队列中任务的优先级设置，同时还可以通过 KVO 来监控任务的执行情况。这些通过 GCD 也可以实现，不过需要很多代码，使用 NSOperation 显得方便了很多。</p>
+<li><p>从对任务的控制性来说，<code>NSOperation</code> 显著得好于 <code>GCD</code>，和 <code>GCD</code> 相比支持了 <code>Cancel</code> 操作（注：在 iOS8 中 GCD 引入了 <code>dispatch_block_cancel</code> 和 <code>dispatch_block_testcancel，也可以支持</code> <code>Cancel</code> 操作了），支持任务之间的依赖关系，支持同一个队列中任务的优先级设置，同时还可以通过 <code>KVO</code> 来监控任务的执行情况。这些通过 <code>GCD</code> 也可以实现，不过需要很多代码，使用 <code>NSOperation</code> 显得方便了很多。</p>
 </li>
-<li><p>从第三方库的角度，知名的第三方库如 AFNetworking 和 SDWebImage 背后都是使用 NSOperation，也从另一方面说明对于需要复杂并发控制的需求，NSOperation 是更好的选择（当然也不是绝对的，例如知名的 <a href="https://github.com/ParsePlatform/Parse-SDK-iOS-OSX" target="_blank" rel="noopener">Parse SDK</a> 就完全没有使用 NSOperation，全部使用 GCD，其中涉及到大量的 GCD 高级用法，这里有<a href="https://github.com/ChenYilong/ParseSourceCodeStudy" target="_blank" rel="noopener">相关解析</a>）。</p>
+<li><p>从第三方库的角度，知名的第三方库如 <code>AFNetworking</code> 和 <code>SDWebImage</code> 背后都是使用 <code>NSOperation</code> ，也从另一方面说明对于需要复杂并发控制的需求，<code>NSOperation</code> 是更好的选择（当然也不是绝对的，例如知名的 <a href="https://github.com/ParsePlatform/Parse-SDK-iOS-OSX" target="_blank" rel="noopener">Parse SDK</a> 就完全没有使用 NSOperation，全部使用 GCD，其中涉及到大量的 GCD 高级用法，这里有<a href="https://github.com/ChenYilong/ParseSourceCodeStudy" target="_blank" rel="noopener">相关解析</a>）。</p>
 </li>
 </ul>
 <h5 id="参考资料">参考资料</h5><ul>
