@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="isa是什么？官方解释是：  Every object has an isa instance variable that identifies the object’s class. The runtime uses this pointer to determine the actual class of the object when it needs to.  不过我不打算在这里从零开始叙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从runtime源码角度看isa指向">
+<meta property="og:url" content="http://tanghongbin.me/2018/04/16/ISA/index.html">
+<meta property="og:site_name" content="tanghongbin">
+<meta property="og:description" content="isa是什么？官方解释是：  Every object has an isa instance variable that identifies the object’s class. The runtime uses this pointer to determine the actual class of the object when it needs to.  不过我不打算在这里从零开始叙">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tanghongbin.me/images/post_images/isa.png">
+<meta property="og:updated_time" content="2018-04-20T08:18:12.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从runtime源码角度看isa指向">
+<meta name="twitter:description" content="isa是什么？官方解释是：  Every object has an isa instance variable that identifies the object’s class. The runtime uses this pointer to determine the actual class of the object when it needs to.  不过我不打算在这里从零开始叙">
+<meta name="twitter:image" content="http://tanghongbin.me/images/post_images/isa.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tanghongbin.me/2018/04/16/ISA/"/>
+
+
+
+
+
+  <title>从runtime源码角度看isa指向 | tanghongbin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">tanghongbin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOS Developer, S.H.S.F.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tanghongbin.me/2018/04/16/ISA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tanghongbin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/hexo_avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tanghongbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从runtime源码角度看isa指向</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T19:28:31+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/16/ISA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/16/ISA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>isa是什么？官方解释是：</p>
+<blockquote>
+<p>Every object has an isa instance variable that identifies the object’s class. The runtime uses this pointer to determine the actual class of the object when it needs to.</p>
+</blockquote>
+<p>不过我不打算在这里从零开始叙述 <code>isa</code> 是什么，能干什么，在这里，我假设大家是已经理解 <code>isa</code> 是什么了。<br><a id="more"></a></p>
+<p>这篇文章是从 <code>runtime</code> 源码的角度出发，来探索下 <code>isa</code> 的指向问题。先来看一段代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"SuperClass.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"SonClass.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">// insert code here...</span></span><br><span class="line">        <span class="built_in">BOOL</span> foo1 = [[SuperClass <span class="keyword">class</span>] isKindOfClass:[<span class="built_in">NSObject</span> <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">BOOL</span> foo2 = [[SuperClass new] isKindOfClass:[<span class="built_in">NSObject</span> <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo1 is 1, actually foo1 is %d"</span>,foo1);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo2 is 1, actually foo2 is %d"</span>,foo2);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">BOOL</span> foo3 = [[SuperClass <span class="keyword">class</span>] isMemberOfClass:[<span class="built_in">NSObject</span> <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">BOOL</span> foo4 = [[SuperClass new] isMemberOfClass:[<span class="built_in">NSObject</span> <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo3 is 0, actually foo3 is %d"</span>,foo3);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo4 is 0, actually foo4 is %d"</span>,foo4);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">BOOL</span> foo5 = [[SuperClass <span class="keyword">class</span>] isMemberOfClass:[SuperClass <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">BOOL</span> foo6 = [[SuperClass new] isMemberOfClass:[SuperClass <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo5 is 0, actually foo5 is %d"</span>,foo5);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo6 is 1, actually foo6 is %d"</span>,foo6);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">BOOL</span> foo7 = [[SonClass <span class="keyword">class</span>] isKindOfClass:[SuperClass <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">BOOL</span> foo8 = [[SonClass new] isKindOfClass:[SuperClass <span class="keyword">class</span>]];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo7 is 0, actually foo7 is %d"</span>,foo7);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"foo8 is 1, actually foo8 is %d"</span>,foo8);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>SuperClass</code> 是继承自<code>NSObject</code>类的，而<code>SonClass</code>的父类是 <code>SuperClass</code>，上面这段看似简单的代码打印出来的是：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">foo1 is <span class="number">1</span>, actually foo1 is <span class="number">1</span></span><br><span class="line">foo2 is <span class="number">1</span>, actually foo2 is <span class="number">1</span></span><br><span class="line">foo3 is <span class="number">0</span>, actually foo3 is <span class="number">0</span></span><br><span class="line">foo4 is <span class="number">0</span>, actually foo4 is <span class="number">0</span></span><br><span class="line">foo5 is <span class="number">0</span>, actually foo5 is <span class="number">0</span></span><br><span class="line">foo6 is <span class="number">1</span>, actually foo6 is <span class="number">1</span></span><br><span class="line">foo7 is <span class="number">0</span>, actually foo7 is <span class="number">0</span></span><br><span class="line">foo8 is <span class="number">1</span>, actually foo8 is <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>不难看出，这里要讨论的的四个方法分别是：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)isKindOfClass:(Class)aClass;</span><br><span class="line">- (<span class="built_in">BOOL</span>)isMemberOfClass:(Class)aClass;</span><br><span class="line">+ (<span class="built_in">BOOL</span>)isKindOfClass:(Class)aClass;</span><br><span class="line">+ (<span class="built_in">BOOL</span>)isMemberOfClass:(Class)aClass;</span><br></pre></td></tr></table></figure></p>
+<p>讨论方法的最直接方式，看源码：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="built_in">BOOL</span>)isMemberOfClass:(Class)cls &#123;</span><br><span class="line">    <span class="keyword">return</span> object_getClass((<span class="keyword">id</span>)<span class="keyword">self</span>) == cls;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)isMemberOfClass:(Class)cls &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">self</span> <span class="keyword">class</span>] == cls;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">BOOL</span>)isKindOfClass:(Class)cls &#123;</span><br><span class="line">    <span class="keyword">for</span> (Class tcls = object_getClass((<span class="keyword">id</span>)<span class="keyword">self</span>); tcls; tcls = tcls-&gt;superclass) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tcls == cls) <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">BOOL</span>)isKindOfClass:(Class)cls &#123;</span><br><span class="line">    <span class="keyword">for</span> (Class tcls = [<span class="keyword">self</span> <span class="keyword">class</span>]; tcls; tcls = tcls-&gt;superclass) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tcls == cls) <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>看看源码，发现实例方法与类方法之间的主要区别是，<code>[self class]</code> 与 <code>object_getClass((id)self)</code> ，再继续来看代码：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (Class)<span class="keyword">class</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> object_getClass(<span class="keyword">self</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Class object_getClass(<span class="keyword">id</span> obj)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj) <span class="keyword">return</span> obj-&gt;getIsa();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> Nil;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以，其实逻辑是一样的，无论是实例方法还是类方法，最后都是要去获取 <code>isa</code> ，从这里也可以看得出，类其实也是一个对象，「毕竟在面向对象的世界里，万物皆对象」。</p>
+<p>好了，既然在这一步取得了 <code>isa</code> ，就来看具体的方法实现了，其实看了源码，很简单， <code>isMemberOfClass</code> 的逻辑就是直接用取得的 <code>isa</code> 与 <code>cls</code> 做比较，得出结果然后返回。</p>
+<p>而在 <code>isKindOfClass</code> 里面则是多了一层 <code>for-loop</code> 的逻辑，简单分析一下， <code>loop</code> 的初始值 <code>tcls</code> 是当前对象的 <code>isa class</code> ，循环条件是 <code>tcls</code> 不为空，最后是下一次循环的取值，是 <code>tcls-&gt;superclass</code> ，就是 <code>tcls</code> 的父类，循环体是判断是否相等的逻辑，最后是返回结果。</p>
+<p>熟悉 <code>runtime</code> 里的 <code>isa、meta class</code> 概念的都知道，类的 <code>isa</code> 是指向其元类 <code>metaclass</code> 的，实例的 <code>isa</code> 是指向类 <code>class</code> 的， <code>NSObject（Root class）</code> 的 <code>isa</code> 是指向 <code>meta root clas</code> ，而 <code>meta root class</code> 的父类是 <code>NSObject</code> ，这样就形成一个闭环，（ <code>NSObject</code> 的 父类 是 <code>nil</code> <code>，meta root Class</code> 的 父类是 <code>nil</code> ），看不懂描述的时候，直接看图：</p>
+<div align="center"><br><img src="/images/post_images/isa.png" alt="GitHub" title="ISA" width="600" height="550"><br></div>
+
+
+<p>然后结合上图回过头来看一开始的代码，<code>SuperClass</code> 的 <code>isa</code> 是指向它的元类 <code>meta class</code> ，并不等于 <code>NSObject</code> ，然后 <code>tcls = tcls-&gt;superclass</code>，<br><code>tcls = meta Root class</code> ，也不等于 <code>NSObject</code> ，然后， <code>tcls = meta Root class-&gt;superclass</code> ，也就是 <code>tcls = NSObject</code> ，所以最后结果是 <code>true</code> ，也就是 <code>1</code> 了。</p>
+<p>结合示例图，就能理解一开始的代码的输出结果了。</p>
+<p>文章里只是从另一个角度去验证下 <code>isa</code> 的指向原理，闭环方式，说的只是 <code>isa</code> 里很基础概念，理解就好了，重要的是应用，其中， <code>isa</code> 比较重要的应用是：<code>KVO</code> 的实现原理，下篇会研究下。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/26/nsoperationvsgcd/" rel="next" title="NSOperation 与 GCD 的对比">
+                <i class="fa fa-chevron-left"></i> NSOperation 与 GCD 的对比
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/hexo_avatar.jpeg"
+               alt="tanghongbin" />
+          <p class="site-author-name" itemprop="name">tanghongbin</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/thongbin" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Github
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tanghongbin</span>
+
+ 
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://kelvintong.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://tanghongbin.me/2018/04/16/ISA/';
+          this.page.identifier = '2018/04/16/ISA/';
+          this.page.title = '从runtime源码角度看isa指向';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://kelvintong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
